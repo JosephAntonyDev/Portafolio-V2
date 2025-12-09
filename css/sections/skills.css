@@ -1,0 +1,178 @@
+/* Sección Skills */
+.skills {
+  background-color: #252a2e;
+  color: #fff;
+  padding: 50px 20px;
+}
+
+.skills .contenido-section {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.skills h2 {
+  font-size: 48px;
+  font-family: "Righteous";
+  text-align: center;
+  padding: 20px 0;
+}
+
+.skills .fila {
+  display: flex;
+}
+
+.skills .fila .col {
+  width: 50%;
+  padding: 0 20px;
+}
+
+.skills .fila .col h3 {
+  font-size: 28px;
+  font-family: "Righteous";
+  margin-bottom: 25px;
+}
+
+.skills .skill > span {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.skills .skill .barra-skill {
+  height: 8px;
+  width: 80%;
+  background-color: #131517;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.skills .skill .progreso {
+  background-color: #1cb698;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 8px;
+}
+
+.skills .skill .barra-skill span {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background-color: #1cb698;
+  border-radius: 50px;
+  line-height: 40px;
+  text-align: center;
+  top: -17px;
+  right: -15px;
+  font-size: 14px;
+}
+
+/* Animaciones para skills técnicas */
+.skills .skill .golang {
+  width: 0%;
+  animation: 2s golang forwards;
+}
+@keyframes golang {
+  0% { width: 0%; }
+  100% { width: 90%; }
+}
+
+.skills .skill .python {
+  width: 0%;
+  animation: 2s python forwards;
+}
+@keyframes python {
+  0% { width: 0%; }
+  100% { width: 80%; }
+}
+
+.skills .skill .javascript {
+  width: 0%;
+  animation: 2s javascript forwards;
+}
+@keyframes javascript {
+  0% { width: 0%; }
+  100% { width: 75%; }
+}
+
+.skills .skill .java {
+  width: 0%;
+  animation: 2s java forwards;
+}
+@keyframes java {
+  0% { width: 0%; }
+  100% { width: 70%; }
+}
+
+.skills .skill .devops {
+  width: 0%;
+  animation: 2s devops forwards;
+}
+@keyframes devops {
+  0% { width: 0%; }
+  100% { width: 75%; }
+}
+
+.skills .skill .hacking {
+  width: 0%;
+  animation: 2s hacking forwards;
+}
+@keyframes hacking {
+  0% { width: 0%; }
+  100% { width: 50%; }
+}
+
+/* Animaciones para soft skills */
+.skills .skill .comunicacion {
+  width: 0%;
+  animation: 2s comunicacion forwards;
+}
+@keyframes comunicacion {
+  0% { width: 0%; }
+  100% { width: 85%; }
+}
+
+.skills .skill .trabajo {
+  width: 0%;
+  animation: 2s trabajo forwards;
+}
+@keyframes trabajo {
+  0% { width: 0%; }
+  100% { width: 90%; }
+}
+
+.skills .skill .liderazgo {
+  width: 0%;
+  animation: 2s liderazgo forwards;
+}
+@keyframes liderazgo {
+  0% { width: 0%; }
+  100% { width: 85%; }
+}
+
+.skills .skill .resolucion {
+  width: 0%;
+  animation: 2s resolucion forwards;
+}
+@keyframes resolucion {
+  0% { width: 0%; }
+  100% { width: 90%; }
+}
+
+.skills .skill .aprendizaje {
+  width: 0%;
+  animation: 2s aprendizaje forwards;
+}
+@keyframes aprendizaje {
+  0% { width: 0%; }
+  100% { width: 95%; }
+}
+
+.skills .skill .adaptabilidad {
+  width: 0%;
+  animation: 2s adaptabilidad forwards;
+}
+@keyframes adaptabilidad {
+  0% { width: 0%; }
+  100% { width: 90%; }
+}

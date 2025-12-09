@@ -1,0 +1,71 @@
+/* Navbar / Header */
+.contenedor-header {
+  background: #1e2326;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.contenedor-header header {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.contenedor-header header .logo a {
+  font-family: "Righteous";
+  font-size: 36px;
+  color: #1cb698;
+  text-decoration: none;
+}
+
+.contenedor-header header ul {
+  display: flex;
+  list-style: none;
+}
+
+.contenedor-header header nav ul li a {
+  text-align: none;
+  color: #fff;
+  margin: 0 15px;
+  padding: 3px;
+  transition: 0.5s;
+  text-decoration: none;
+}
+
+.contenedor-header header nav ul li a:hover {
+  color: #1cb698;
+}
+
+.nav-responsive {
+  background-color: #1cb698;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 100;
+}
+
+.nav-responsive:hover {
+  background-color: #17a085;
+  transform: scale(1.05);
+}
+
+.nav-responsive.active {
+  background-color: #17a085;
+}
+
+.nav-responsive.active i {
+  transform: rotate(90deg);
+}
+
+.nav-responsive i {
+  transition: transform 0.3s ease;
+}

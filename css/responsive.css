@@ -1,0 +1,186 @@
+/* ESTILOS RESPONSIVE */
+
+/* Tablets y pantallas medianas (max 980px) */
+@media screen and (max-width: 980px) {
+  nav {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 75px;
+    background-color: #252A2E;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease;
+    opacity: 0;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-responsive {
+    display: block;
+  }
+
+  nav.responsive {
+    display: block;
+    max-height: 400px;
+    opacity: 1;
+  }
+
+  nav.responsive ul {
+    display: flex !important;
+    flex-direction: column;
+    padding: 10px 0;
+  }
+
+  nav.responsive ul li {
+    border-bottom: none;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeInDown 0.3s ease forwards;
+  }
+
+  nav.responsive ul li:nth-child(1) { animation-delay: 0.05s; }
+  nav.responsive ul li:nth-child(2) { animation-delay: 0.1s; }
+  nav.responsive ul li:nth-child(3) { animation-delay: 0.15s; }
+  nav.responsive ul li:nth-child(4) { animation-delay: 0.2s; }
+  nav.responsive ul li:nth-child(5) { animation-delay: 0.25s; }
+  nav.responsive ul li:nth-child(6) { animation-delay: 0.3s; }
+
+  nav.responsive ul li a {
+    display: block;
+    padding: 15px 25px;
+    margin: 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+
+  nav.responsive ul li a:hover {
+    background-color: #1cb698;
+    color: #fff;
+    transform: scale(1.02);
+  }
+
+  @keyframes fadeInDown {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Media query para tablets - Portfolio */
+@media screen and (max-width: 900px) and (min-width: 701px) {
+  .portfolio .galeria {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Móviles (max 700px) */
+@media screen and (max-width: 700px) {
+  /* Sobre mí */
+  .sobremi .fila {
+    display: block;
+  }
+
+  .sobremi .fila .col {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  /* Centrar intereses en móvil */
+  .sobremi .fila .col .contenedor-intereses {
+    justify-content: center;
+  }
+
+  .sobremi .fila .col .contenedor-intereses .interes {
+    margin: 8px;
+  }
+
+  .sobremi .fila .col h3 {
+    text-align: center;
+  }
+
+  /* Skills */
+  .skills .fila {
+    display: block;
+  }
+
+  .skills .fila .col {
+    width: 100%;
+  }
+
+  .skills .fila .col .barra-skill {
+    width: 100%;
+  }
+
+  /* Curriculum */
+  .curriculum .fila {
+    display: block;
+  }
+
+  .curriculum .fila .col {
+    width: 90%;
+  }
+
+  .curriculum .fila .derecha {
+    margin-left: 20px;
+  }
+
+  /* Portafolio responsive mejorado */
+  .portfolio .galeria {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .portfolio .galeria .proyecto {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin: 0;
+  }
+
+  .portfolio .galeria .proyecto img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    background-color: #1e2326;
+  }
+
+  .portfolio .galeria .proyecto .overlay {
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 15px;
+  }
+
+  .portfolio .galeria .proyecto .overlay h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .portfolio .galeria .proyecto .overlay p {
+    font-size: 13px;
+    line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Contacto */
+  .contacto .fila {
+    display: block;
+  }
+
+  .contacto .fila .col {
+    width: 100%;
+  }
+}
