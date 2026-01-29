@@ -58,7 +58,7 @@ function efectoHabilidades(){
         habilidades[2].classList.add("javascript");
         habilidades[3].classList.add("java");
         habilidades[4].classList.add("devops");
-        habilidades[5].classList.add("hacking");
+        habilidades[5].classList.add("movil");
         // Soft skills
         habilidades[6].classList.add("comunicacion");
         habilidades[7].classList.add("trabajo");
@@ -71,8 +71,8 @@ function efectoHabilidades(){
 
 function descargarCV(){
     const link = document.createElement('a');
-    link.href = './files/JoseAntonio-CV.pdf';
-    link.download = 'JoseAntonio-CV.pdf';
+    link.href = './files/PintoAguilar_CV.pdf';
+    link.download = 'PintoAguilar_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

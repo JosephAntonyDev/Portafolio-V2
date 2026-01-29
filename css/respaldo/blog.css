@@ -335,13 +335,13 @@ html {
   100% { width: 75%; }
 }
 
-.skills .skill .hacking {
+.skills .skill .movil {
   width: 0%;
-  animation: 2s hacking forwards;
+  animation: 2s movil forwards;
 }
-@keyframes hacking {
+@keyframes movil {
   0% { width: 0%; }
-  100% { width: 50%; }
+  100% { width: 60%; }
 }
 
 /* Animaciones para soft skills */
