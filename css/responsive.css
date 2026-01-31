@@ -92,30 +92,61 @@
     margin-bottom: 30px;
   }
 
-  /* Centrar intereses en móvil */
+  /* Centrar intereses/soft skills en móvil */
   .sobremi .fila .col .contenedor-intereses {
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
   .sobremi .fila .col .contenedor-intereses .interes {
-    margin: 8px;
+    padding: 15px 8px;
+    min-height: 90px;
+  }
+
+  .sobremi .fila .col .contenedor-intereses .interes i {
+    font-size: 24px;
+  }
+
+  .sobremi .fila .col .contenedor-intereses .interes span {
+    font-size: 10px;
   }
 
   .sobremi .fila .col h3 {
     text-align: center;
   }
 
-  /* Skills */
-  .skills .fila {
-    display: block;
+  /* Skills - Tech Stack */
+  .skills h2 {
+    font-size: 36px;
   }
 
-  .skills .fila .col {
-    width: 100%;
+  .skills .skills-descripcion {
+    font-size: 15px;
+    padding: 0 10px;
   }
 
-  .skills .fila .col .barra-skill {
-    width: 100%;
+  .skills-categorias h3 {
+    font-size: 20px;
+    justify-content: center;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .tech-card {
+    padding: 18px 10px;
+    border-radius: 12px;
+  }
+
+  .tech-card img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tech-card span {
+    font-size: 11px;
   }
 
   /* Curriculum */
