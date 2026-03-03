@@ -22,7 +22,7 @@
 
 ---
 
-## ✨ Descripción
+## Descripción
 
 Sitio web de portafolio personal desarrollado desde cero con **HTML, CSS y JavaScript puro** — sin frameworks. Presenta mi perfil profesional, habilidades técnicas, proyectos destacados y un formulario de contacto funcional.
 
@@ -80,7 +80,7 @@ HTML5 · CSS3 · JavaScript (ES6+)
 
 ---
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 ├── index.html               # Shell principal

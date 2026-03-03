@@ -254,7 +254,7 @@ const proyectosData = {
         badges: [],
         estado: null,
         placeholderClases: "proyecto-placeholder android-placeholder",
-        github: "https://github.com/JosephAntonyDev/WireChef-API",
+        github: "https://github.com/JosephAntonyDev/WireChef",
         demo: "#"
     },
     todosuper: {
@@ -279,7 +279,7 @@ const proyectosData = {
         badges: [],
         estado: null,
         placeholderClases: "proyecto-placeholder android-placeholder",
-        github: "https://github.com/JosephAntonyDev/TodoSuper",
+        github: "https://github.com/JosephAntonyDev/Todo-Super-Android",
         demo: "#"
     }
 };
