@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./img/inicio/circulito.png" alt="José Antonio" width="120" />
+  <img src="./img/inicio/circulito.webp" alt="José Antonio" width="120" />
 </p>
 
 <h1 align="center">Portafolio — José Antonio</h1>

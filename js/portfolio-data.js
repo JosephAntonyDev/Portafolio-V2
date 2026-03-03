@@ -8,7 +8,7 @@ const proyectosData = {
         titulo: "Notaría 178",
         resumen: "Plataforma web para gestión operativa y administrativa de notaría con VPN segura y control de acceso.",
         descripcion: "Plataforma web robusta para la gestión operativa y administrativa de una notaría. Incluye arquitectura de red segura con servidor local configurado con la VPN Tailscale, permitiendo acceso remoto cifrado desde otras sucursales. Sistema avanzado de doble gestión para usuarios y empleados con estricto control de acceso y autenticación.",
-        imagen: "./img/portafolio/notaria.png",
+        imagen: "./img/portafolio/web/notaria178/notaria.webp",
         categoria: "web",
         tecnologias: ["Go", "PostgreSQL", "Tailscale VPN", "Docker", "JWT", "Linux", "React", "Redis", "WebSockets"],
         features: [
@@ -29,7 +29,7 @@ const proyectosData = {
         titulo: "Vixel",
         resumen: "Plataforma descentralizada de juegos, torneos y streaming en Blockchain Vara.",
         descripcion: "Plataforma descentralizada revolucionaria que combina juegos, torneos competitivos y streaming en vivo, todo impulsado por tecnología Blockchain en la red Vara. Este proyecto ganó el 1er lugar a nivel Nacional y 2do lugar Internacional en competencias de desarrollo blockchain.",
-        imagen: "./img/portafolio/vixel.png",
+        imagen: "./img/portafolio/web/vixel/vixel.webp",
         categoria: "web",
         tecnologias: ["Rust", "Blockchain", "Vara Network", "React", "Node.js", "WebSockets", "TypeScript", "Web3"],
         features: [
@@ -53,7 +53,7 @@ const proyectosData = {
         titulo: "VaultDoc-VD",
         resumen: "Plataforma segura para gestión de archivos gubernamentales con análisis de vulnerabilidades.",
         descripcion: "Plataforma de seguridad empresarial diseñada para la gestión segura de archivos gubernamentales. Incluye análisis de vulnerabilidades en tiempo real, encriptación de extremo a extremo y auditoría completa de accesos.",
-        imagen: "./img/portafolio/VaultDoc.png",
+        imagen: "./img/portafolio/web/estancias/VaultDoc.webp",
         categoria: "web",
         tecnologias: ["Go", "PostgreSQL", "JWT", "Docker", "Redis", "Microservices", "gRPC", "Angular"],
         features: [
@@ -76,7 +76,7 @@ const proyectosData = {
         titulo: "GEOVA",
         resumen: "Sistema inteligente de medición y análisis para proyectos de ingeniería civil con IoT.",
         descripcion: "Sistema inteligente de medición y análisis para proyectos de ingeniería civil. Utiliza sensores IoT con Raspberry Pi y ESP32 para recopilar datos en tiempo real, procesarlos con Python y visualizarlos en dashboards interactivos.",
-        imagen: "./img/portafolio/GEOVA.png",
+        imagen: "./img/portafolio/web/geova/GEOVA.webp",
         categoria: "web",
         tecnologias: ["Go", "Python", "Raspberry Pi", "ESP32", "FastAPI", "PostgreSQL", "RabbitMQ", "Angular", "Docker", "WebSockets"],
         features: [
@@ -97,7 +97,7 @@ const proyectosData = {
         titulo: "Frimeet",
         resumen: "Plataforma de recomendaciones con APIs REST y bases de datos relacionales y no relacionales.",
         descripcion: "Plataforma de recomendaciones inteligente que combina APIs REST robustas con bases de datos relacionales (PostgreSQL) y no relacionales (MongoDB). El sistema utiliza algoritmos de Machine Learning para personalizar las sugerencias.",
-        imagen: "./img/portafolio/Frimeet.png",
+        imagen: "./img/portafolio/web/frimeet/Frimeet.webp",
         categoria: "web",
         tecnologias: ["Node.js", "MongoDB", "PostgreSQL", "Python", "Express", "Machine Learning", "React + vite"],
         features: [
@@ -118,7 +118,7 @@ const proyectosData = {
         titulo: "Reading Club",
         resumen: "Plataforma de libros y clubs de lectura para comunidades de lectores.",
         descripcion: "Plataforma social para amantes de la lectura donde pueden crear y unirse a clubs de lectura, compartir reseñas, organizar sesiones de discusión y descubrir nuevos libros basados en sus intereses.",
-        imagen: "./img/portafolio/ReadingClub.png",
+        imagen: "./img/portafolio/web/ReadingClub.webp",
         categoria: "web",
         tecnologias: ["React", "Node.js", "MongoDB", "Socket.io", "Express", "JWT"],
         features: [
@@ -139,7 +139,7 @@ const proyectosData = {
         titulo: "AnimTop",
         resumen: "App web para visualizar diferentes tops de animes, estrenos y tendencias.",
         descripcion: "Aplicación web interactiva para explorar los mejores animes, estrenos de temporada y tendencias. Consume APIs externas para mostrar información actualizada con una interfaz moderna y atractiva.",
-        imagen: "./img/portafolio/AnimTop2.png",
+        imagen: "./img/portafolio/web/AnimTop2.webp",
         categoria: "web",
         tecnologias: ["JavaScript", "API REST", "CSS3", "HTML5", "Fetch API", "Angular"],
         features: [
@@ -160,7 +160,7 @@ const proyectosData = {
         titulo: "Videojuego 2D Educativo",
         resumen: "Juego educativo sobre formación del cuerpo humano para el Museo Chiapas de Ciencia y Tecnología.",
         descripcion: "Juego educativo desarrollado para el Museo Chiapas de Ciencia y Tecnología. Enseña la formación del cuerpo humano de manera interactiva y divertida, diseñado especialmente para niños y jóvenes visitantes del museo.",
-        imagen: "./img/portafolio/Game2D.jpg",
+        imagen: "./img/portafolio/web/estancias/Game2D.webp",
         categoria: "web",
         tecnologias: ["Pygame", "Python", "2D Graphics", "Game Design", "UI/UX", "Figma"],
         features: [
@@ -181,7 +181,7 @@ const proyectosData = {
         titulo: "Encriptador de Texto",
         resumen: "Herramienta de encriptación y desencriptación de texto desarrollada en Alura Oracle.",
         descripcion: "Herramienta web de encriptación y desencriptación de texto desarrollada como parte del programa Oracle Next Education (ONE) de Alura. Permite codificar mensajes de forma segura utilizando algoritmos personalizados.",
-        imagen: "./img/portafolio/encriptador.png",
+        imagen: "./img/portafolio/web/encriptador.webp",
         categoria: "web",
         tecnologias: ["JavaScript", "HTML5", "CSS3", "Responsive Design"],
         features: [
@@ -202,7 +202,7 @@ const proyectosData = {
         titulo: "SplitMeet",
         resumen: "App nativa Android con Kotlin, Jetpack Compose y arquitectura MVVM. Inyección de dependencias con Hilt.",
         descripcion: "Aplicación móvil nativa Android desarrollada desde cero con Kotlin y Jetpack Compose. Diseñada bajo arquitectura MVVM, aplicando principios SOLID y patrones de diseño (Factory, Repository). Integra inyección de dependencias con Hilt, manejo de estados reactivos con MutableStateFlow y consumo de APIs en tiempo real mediante Retrofit, OkHttpClient y WebSockets.",
-        imagen: "./img/portafolio/movil/splitmeet/splitmeet.jpeg",
+        imagen: "./img/portafolio/movil/splitmeet/splitmeet.webp",
         categoria: "android",
         tecnologias: ["Kotlin", "Jetpack Compose", "MVVM", "Dagger Hilt", "Retrofit", "WebSockets", "Gradle", "OkHttpClient"],
         features: [
@@ -213,17 +213,17 @@ const proyectosData = {
             "Comunicación en tiempo real con WebSockets"
         ],
         galeria: [
-            "./img/portafolio/movil/splitmeet/splitmeet.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet0.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet1.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet2.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet3.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet4.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet5.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet6.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet7.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet8.jpeg",
-            "./img/portafolio/movil/splitmeet/splitmeet9.jpeg"
+            "./img/portafolio/movil/splitmeet/splitmeet.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet0.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet1.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet2.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet3.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet4.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet5.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet6.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet7.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet8.webp",
+            "./img/portafolio/movil/splitmeet/splitmeet9.webp"
         ],
         badges: [],
         estado: null,
@@ -236,7 +236,7 @@ const proyectosData = {
         titulo: "WireChef API",
         resumen: "Backend en Go para gestión de restaurante con WebSockets en tiempo real e inyección de dependencias con Google Wire.",
         descripcion: "Backend robusto para gestión de usuarios, productos y órdenes en restaurante, con notificaciones en tiempo real por WebSocket y composición de dependencias con Google Wire. Arquitectura organizada por features (user, product, order) con capas domain, app, infra. Incluye endpoints REST completos para CRUD de usuarios, productos y órdenes, filtros avanzados y comunicación bidireccional con roles chef/waiter vía WebSocket.",
-        imagen: "./img/portafolio/movil/wirechef/wirechef.jpeg",
+        imagen: "./img/portafolio/movil/wirechef/wirechef.webp",
         categoria: "android",
         tecnologias: ["Go", "Gin", "PostgreSQL", "Gorilla WebSocket", "Google Wire", "REST API", "Docker"],
         features: [
@@ -247,9 +247,9 @@ const proyectosData = {
             "Filtros avanzados por categoría, estado y mesa"
         ],
         galeria: [
-            "./img/portafolio/movil/wirechef/wirechef.jpeg",
-            "./img/portafolio/movil/wirechef/wirechef1.jpeg",
-            "./img/portafolio/movil/wirechef/wirechef2.jpeg"
+            "./img/portafolio/movil/wirechef/wirechef.webp",
+            "./img/portafolio/movil/wirechef/wirechef1.webp",
+            "./img/portafolio/movil/wirechef/wirechef2.webp"
         ],
         badges: [],
         estado: null,
@@ -262,7 +262,7 @@ const proyectosData = {
         titulo: "TodoSuper",
         resumen: "App Android nativa de gestión de tareas con Kotlin, Jetpack Compose y Clean Architecture consumiendo Todoist API.",
         descripcion: "Aplicación Android nativa de gestión de tareas desarrollada con Kotlin y Jetpack Compose. Implementa Clean Architecture y patrón MVVM, integrando la API REST de Todoist para sincronización de tareas. Proyecto académico para Programación Móvil I enfocado en poner en práctica arquitecturas y buenas prácticas de desarrollo móvil.",
-        imagen: "./img/portafolio/movil/todosuper/todosuperclaro.jpeg",
+        imagen: "./img/portafolio/movil/todosuper/todosuperclaro.webp",
         categoria: "android",
         tecnologias: ["Kotlin", "Jetpack Compose", "MVVM", "Clean Architecture", "Todoist API", "Retrofit", "Gradle"],
         features: [
@@ -273,8 +273,8 @@ const proyectosData = {
             "Interfaz moderna con Jetpack Compose"
         ],
         galeria: [
-            "./img/portafolio/movil/todosuper/todosuperclaro.jpeg",
-            "./img/portafolio/movil/todosuper/todosuper.jpeg"
+            "./img/portafolio/movil/todosuper/todosuperclaro.webp",
+            "./img/portafolio/movil/todosuper/todosuper.webp"
         ],
         badges: [],
         estado: null,
