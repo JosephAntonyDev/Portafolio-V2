@@ -3,69 +3,132 @@
 /* Tablets y pantallas medianas (max 980px) */
 @media screen and (max-width: 980px) {
   nav {
-    display: none;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     right: 0;
-    top: 75px;
-    background-color: #252A2E;
+    bottom: 0;
     width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out, opacity 0.3s ease;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(24, 28, 31, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 98;
     opacity: 0;
-    border-radius: 0 0 15px 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    transform: scale(1.02);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+
+  nav::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(28, 182, 152, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(28, 182, 152, 0.04) 0%, transparent 40%);
+    pointer-events: none;
   }
 
   .nav-responsive {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    position: relative;
   }
 
   nav.responsive {
-    display: block;
-    max-height: 400px;
+    display: flex;
     opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    max-height: none;
+    overflow: visible;
   }
 
   nav.responsive ul {
     display: flex !important;
     flex-direction: column;
-    padding: 10px 0;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    position: relative;
+    z-index: 1;
   }
 
   nav.responsive ul li {
     border-bottom: none;
     padding: 0;
     opacity: 0;
-    transform: translateY(-10px);
-    animation: fadeInDown 0.3s ease forwards;
+    transform: translateY(20px);
+    animation: menuItemIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    width: 100%;
+    text-align: center;
   }
 
-  nav.responsive ul li:nth-child(1) { animation-delay: 0.05s; }
-  nav.responsive ul li:nth-child(2) { animation-delay: 0.1s; }
-  nav.responsive ul li:nth-child(3) { animation-delay: 0.15s; }
-  nav.responsive ul li:nth-child(4) { animation-delay: 0.2s; }
-  nav.responsive ul li:nth-child(5) { animation-delay: 0.25s; }
-  nav.responsive ul li:nth-child(6) { animation-delay: 0.3s; }
+  nav.responsive ul li:nth-child(1) { animation-delay: 0.06s; }
+  nav.responsive ul li:nth-child(2) { animation-delay: 0.12s; }
+  nav.responsive ul li:nth-child(3) { animation-delay: 0.18s; }
+  nav.responsive ul li:nth-child(4) { animation-delay: 0.24s; }
+  nav.responsive ul li:nth-child(5) { animation-delay: 0.30s; }
+  nav.responsive ul li:nth-child(6) { animation-delay: 0.36s; }
 
   nav.responsive ul li a {
     display: block;
-    padding: 15px 25px;
+    padding: 16px 48px;
     margin: 0;
     text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    border-radius: 14px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav.responsive ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #1cb698, transparent);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    opacity: 0;
   }
 
   nav.responsive ul li a:hover {
-    background-color: #1cb698;
-    color: #fff;
-    transform: scale(1.02);
+    color: #1cb698;
+    background: rgba(28, 182, 152, 0.08);
+    transform: scale(1.04);
+    letter-spacing: 4px;
   }
 
-  @keyframes fadeInDown {
+  nav.responsive ul li a:hover::before {
+    width: 40%;
+    opacity: 1;
+    bottom: 8px;
+    transform: translate(-50%, 0);
+  }
+
+  @keyframes menuItemIn {
     to {
       opacity: 1;
       transform: translateY(0);
@@ -77,6 +140,14 @@
 @media screen and (max-width: 900px) and (min-width: 701px) {
   .portfolio .galeria {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets - Skills grid 2 columnas */
+@media screen and (max-width: 1024px) and (min-width: 701px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
@@ -125,28 +196,64 @@
     padding: 0 10px;
   }
 
-  .skills-categorias h3 {
-    font-size: 20px;
-    justify-content: center;
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .tech-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+  .skill-category {
+    padding: 20px 16px;
+    border-radius: 16px;
   }
 
-  .tech-card {
-    padding: 18px 10px;
-    border-radius: 12px;
+  .skill-category h3 {
+    font-size: 15px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
   }
 
-  .tech-card img {
-    width: 40px;
-    height: 40px;
+  .skill-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
 
-  .tech-card span {
+  .skill-item {
+    padding: 10px 10px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+
+  .skill-item img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .skill-name {
     font-size: 11px;
+  }
+
+  .skill-level {
+    font-size: 9px;
+    padding: 1px 6px;
+  }
+
+  /* Portfolio Tabs */
+  .portfolio-tabs {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .portfolio-tab {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    flex: 1;
+    justify-content: center;
+    min-width: 140px;
+  }
+
+  .galeria-proyectos.portfolio-content.active {
+    grid-template-columns: 1fr;
   }
 
   /* Curriculum */

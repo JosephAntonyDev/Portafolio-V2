@@ -45,21 +45,33 @@
 .nav-responsive {
   background-color: #1cb698;
   color: #fff;
-  padding: 8px 12px;
-  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
   cursor: pointer;
   display: none;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   z-index: 100;
+  position: relative;
+  font-size: 1.1rem;
 }
 
 .nav-responsive:hover {
   background-color: #17a085;
   transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(28, 182, 152, 0.35);
 }
 
 .nav-responsive.active {
-  background-color: #17a085;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+}
+
+.nav-responsive.active:hover {
+  background-color: rgba(220, 53, 69, 0.3);
+  box-shadow: none;
 }
 
 .nav-responsive.active i {

@@ -1,0 +1,106 @@
+<!--Seccion Contacto-->
+<section id="contacto" class="contacto">
+  <div class="contenido-seccion">
+    <h2>Contacto</h2>
+    <p class="contacto-descripcion">¿Tienes un proyecto en mente o quieres colaborar? ¡Me encantaría escucharte!</p>
+    
+    <div class="contacto-grid">
+      <!--Formulario-->
+      <div class="contacto-form-container">
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="7904e25d-271f-4c99-9a57-9aa6adf94a23">
+          <input type="hidden" name="subject" value="Nuevo mensaje desde tu Portafolio">
+          <input type="hidden" name="from_name" value="Portafolio Web">
+          <!-- Honeypot anti-spam -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+          
+          <div class="form-group">
+            <div class="input-icon">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <input type="text" name="name" placeholder="Tu Nombre" id="nombre" required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <div class="input-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <input type="tel" name="phone" placeholder="Teléfono (opcional)" id="telefono">
+            </div>
+            <div class="form-group">
+              <div class="input-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <input type="email" name="email" placeholder="Tu Email" id="email" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="input-icon">
+              <i class="fa-solid fa-tag"></i>
+            </div>
+            <input type="text" name="subject_line" placeholder="Asunto" id="tema" required>
+          </div>
+          
+          <div class="form-group">
+            <div class="input-icon textarea-icon">
+              <i class="fa-solid fa-message"></i>
+            </div>
+            <textarea name="message" id="mensaje" rows="5" placeholder="Tu mensaje..." required></textarea>
+          </div>
+          
+          <button type="submit" class="btn-enviar" id="btn-enviar">
+            <span class="btn-text">Enviar Mensaje</span>
+            <span class="btn-loading" style="display: none;">
+              <i class="fa-solid fa-spinner fa-spin"></i> Enviando...
+            </span>
+            <i class="fa-regular fa-paper-plane btn-icon"></i>
+          </button>
+        </form>
+      </div>
+      
+      <!--Info de contacto-->
+      <div class="contacto-info-container">
+        <div class="contacto-disponibilidad">
+          <div class="disponibilidad-badge">
+            <span class="disponibilidad-dot"></span>
+            Disponible para trabajar
+          </div>
+          <p class="disponibilidad-texto">Abierto a oportunidades de desarrollo Backend, Full Stack y proyectos freelance.</p>
+        </div>
+        <div class="contacto-info">
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="info-content">
+              <h4>Teléfono</h4>
+              <p>(+52) 964 117 3446</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="info-content">
+              <h4>Email</h4>
+              <p>josephantonydev@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="contacto-social">
+          <a href="https://github.com/JosephAntonyDev" target="_blank" class="social-link">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/jos%C3%A9-antonio-pinto-aguilar-b884b92a2/" target="_blank" class="social-link">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="mailto:josephantonydev@gmail.com" class="social-link">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

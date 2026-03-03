@@ -1,200 +1,6 @@
-// Variable para controlar el menú
-let menuVisible = false;
-
-// Función que oculta o muestra el menú
-function mostrarOcultarMenu(){
-    const nav = document.getElementById("nav");
-    const menuBtn = document.querySelector(".nav-responsive");
-    const menuIcon = menuBtn.querySelector("i");
-    
-    if(menuVisible){
-        nav.classList.remove("responsive");
-        menuBtn.classList.remove("active");
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
-        menuVisible = false;
-    }else{
-        nav.classList.add("responsive");
-        menuBtn.classList.add("active");
-        menuIcon.classList.remove("fa-bars");
-        menuIcon.classList.add("fa-xmark");
-        menuVisible = true;
-    }
-}
-
-function seleccionar(){
-    const nav = document.getElementById("nav");
-    const menuBtn = document.querySelector(".nav-responsive");
-    const menuIcon = menuBtn ? menuBtn.querySelector("i") : null;
-    
-    nav.classList.remove("responsive");
-    if(menuBtn) menuBtn.classList.remove("active");
-    if(menuIcon) {
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
-    }
-    menuVisible = false;
-}
-
-// Cerrar menú al hacer click fuera
-document.addEventListener('click', function(event) {
-    const nav = document.getElementById("nav");
-    const menuBtn = document.querySelector(".nav-responsive");
-    
-    if(menuVisible && !nav.contains(event.target) && !menuBtn.contains(event.target)) {
-        seleccionar();
-    }
-});
-
-// Función que aplica las animaciones de las habilidades
-function efectoHabilidades(){
-    var skills = document.getElementById("skills");
-    var distancia_skills = window.innerHeight - skills.getBoundingClientRect().top;
-    if(distancia_skills >= 300){
-        let habilidades = document.getElementsByClassName("progreso");
-        // Technical skills
-        habilidades[0].classList.add("golang");
-        habilidades[1].classList.add("python");
-        habilidades[2].classList.add("javascript");
-        habilidades[3].classList.add("java");
-        habilidades[4].classList.add("devops");
-        habilidades[5].classList.add("movil");
-        // Soft skills
-        habilidades[6].classList.add("comunicacion");
-        habilidades[7].classList.add("trabajo");
-        habilidades[8].classList.add("liderazgo");
-        habilidades[9].classList.add("resolucion");
-        habilidades[10].classList.add("aprendizaje");
-        habilidades[11].classList.add("adaptabilidad");
-    }
-}
-
-function descargarCV(){
-    const link = document.createElement('a');
-    link.href = './files/Jose_Antonio_Pinto_CV.pdf';
-    link.download = 'Jose_Antonio_Pinto_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-
 // ============================================
-// TOAST NOTIFICATIONS
+// DATOS DE PROYECTOS DEL PORTAFOLIO
 // ============================================
-
-function showToast(title, message, isError = false) {
-    const toast = document.getElementById('toast');
-    const toastIcon = toast.querySelector('.toast-icon');
-    const toastTitle = toast.querySelector('.toast-title');
-    const toastText = toast.querySelector('.toast-text');
-    const toastProgress = toast.querySelector('.toast-progress');
-    
-    // Actualizar contenido
-    toastTitle.textContent = title;
-    toastText.textContent = message;
-    
-    // Cambiar icono según tipo
-    if (isError) {
-        toastIcon.className = 'toast-icon fa-solid fa-circle-xmark error';
-        toast.classList.add('error');
-    } else {
-        toastIcon.className = 'toast-icon fa-solid fa-check-circle';
-        toast.classList.remove('error');
-    }
-    
-    // Reiniciar animación de progreso
-    toastProgress.style.animation = 'none';
-    toastProgress.offsetHeight; // Trigger reflow
-    toastProgress.style.animation = 'progress 5s linear forwards';
-    
-    // Mostrar toast
-    toast.classList.add('show');
-    
-    // Ocultar después de 5 segundos
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 5000);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const btnEnviar = document.getElementById('btn-enviar');
-            const btnText = btnEnviar.querySelector('.btn-text');
-            const btnLoading = btnEnviar.querySelector('.btn-loading');
-            const btnIcon = btnEnviar.querySelector('.btn-icon');
-            
-            // Mostrar estado de carga
-            btnText.style.display = 'none';
-            btnIcon.style.display = 'none';
-            btnLoading.style.display = 'inline-flex';
-            btnEnviar.disabled = true;
-            
-            const formData = new FormData(contactForm);
-            
-            try {
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    showToast(
-                        '¡Mensaje enviado!', 
-                        'Gracias por contactarme. Te responderé pronto.'
-                    );
-                    contactForm.reset();
-                } else {
-                    showToast(
-                        'Error al enviar', 
-                        'Hubo un problema. Intenta de nuevo o envíame un email directo.',
-                        true
-                    );
-                }
-            } catch (error) {
-                showToast(
-                    'Error de conexión', 
-                    'No se pudo enviar el mensaje. Verifica tu conexión.',
-                    true
-                );
-            } finally {
-                // Restaurar botón
-                btnText.style.display = 'inline';
-                btnIcon.style.display = 'inline';
-                btnLoading.style.display = 'none';
-                btnEnviar.disabled = false;
-            }
-        });
-    }
-    
-    const btnCV = document.getElementById('btnDescargarCV');
-    if(btnCV){
-        btnCV.addEventListener('click', descargarCV);
-    }
-
-    // Generar cards del portafolio dinámicamente
-    generarPortfolioCards();
-
-    // Portfolio tabs
-    const portfolioTabs = document.querySelectorAll('.portfolio-tab');
-    const portfolioContents = document.querySelectorAll('.portfolio-content');
-    
-    portfolioTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            portfolioTabs.forEach(t => t.classList.remove('active'));
-            portfolioContents.forEach(c => c.classList.remove('active'));
-            tab.classList.add('active');
-            const targetId = `portfolio-${tab.dataset.tab}`;
-            document.getElementById(targetId).classList.add('active');
-        });
-    });
-});
 
 const proyectosData = {
     notaria178: {
@@ -396,7 +202,7 @@ const proyectosData = {
         titulo: "SplitMeet",
         resumen: "App nativa Android con Kotlin, Jetpack Compose y arquitectura MVVM. Inyección de dependencias con Hilt.",
         descripcion: "Aplicación móvil nativa Android desarrollada desde cero con Kotlin y Jetpack Compose. Diseñada bajo arquitectura MVVM, aplicando principios SOLID y patrones de diseño (Factory, Repository). Integra inyección de dependencias con Hilt, manejo de estados reactivos con MutableStateFlow y consumo de APIs en tiempo real mediante Retrofit, OkHttpClient y WebSockets.",
-        imagen: "./img/portafolio/movil/splitmeet.jpeg",
+        imagen: "./img/portafolio/movil/splitmeet/splitmeet.jpeg",
         categoria: "android",
         tecnologias: ["Kotlin", "Jetpack Compose", "MVVM", "Dagger Hilt", "Retrofit", "WebSockets", "Gradle", "OkHttpClient"],
         features: [
@@ -405,6 +211,19 @@ const proyectosData = {
             "Estados reactivos con MutableStateFlow",
             "Consumo de APIs con Retrofit y OkHttpClient",
             "Comunicación en tiempo real con WebSockets"
+        ],
+        galeria: [
+            "./img/portafolio/movil/splitmeet/splitmeet.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet0.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet1.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet2.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet3.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet4.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet5.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet6.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet7.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet8.jpeg",
+            "./img/portafolio/movil/splitmeet/splitmeet9.jpeg"
         ],
         badges: [],
         estado: null,
@@ -417,7 +236,7 @@ const proyectosData = {
         titulo: "WireChef API",
         resumen: "Backend en Go para gestión de restaurante con WebSockets en tiempo real e inyección de dependencias con Google Wire.",
         descripcion: "Backend robusto para gestión de usuarios, productos y órdenes en restaurante, con notificaciones en tiempo real por WebSocket y composición de dependencias con Google Wire. Arquitectura organizada por features (user, product, order) con capas domain, app, infra. Incluye endpoints REST completos para CRUD de usuarios, productos y órdenes, filtros avanzados y comunicación bidireccional con roles chef/waiter vía WebSocket.",
-        imagen: "./img/portafolio/movil/wirechef.jpeg",
+        imagen: "./img/portafolio/movil/wirechef/wirechef.jpeg",
         categoria: "android",
         tecnologias: ["Go", "Gin", "PostgreSQL", "Gorilla WebSocket", "Google Wire", "REST API", "Docker"],
         features: [
@@ -426,6 +245,11 @@ const proyectosData = {
             "WebSocket en tiempo real para chef y waiter",
             "CRUD completo de usuarios, productos y órdenes",
             "Filtros avanzados por categoría, estado y mesa"
+        ],
+        galeria: [
+            "./img/portafolio/movil/wirechef/wirechef.jpeg",
+            "./img/portafolio/movil/wirechef/wirechef1.jpeg",
+            "./img/portafolio/movil/wirechef/wirechef2.jpeg"
         ],
         badges: [],
         estado: null,
@@ -438,7 +262,7 @@ const proyectosData = {
         titulo: "TodoSuper",
         resumen: "App Android nativa de gestión de tareas con Kotlin, Jetpack Compose y Clean Architecture consumiendo Todoist API.",
         descripcion: "Aplicación Android nativa de gestión de tareas desarrollada con Kotlin y Jetpack Compose. Implementa Clean Architecture y patrón MVVM, integrando la API REST de Todoist para sincronización de tareas. Proyecto académico para Programación Móvil I enfocado en poner en práctica arquitecturas y buenas prácticas de desarrollo móvil.",
-        imagen: "./img/portafolio/movil/todosuper.jpeg",
+        imagen: "./img/portafolio/movil/todosuper/todosuperclaro.jpeg",
         categoria: "android",
         tecnologias: ["Kotlin", "Jetpack Compose", "MVVM", "Clean Architecture", "Todoist API", "Retrofit", "Gradle"],
         features: [
@@ -448,6 +272,10 @@ const proyectosData = {
             "Gestión completa de tareas (CRUD)",
             "Interfaz moderna con Jetpack Compose"
         ],
+        galeria: [
+            "./img/portafolio/movil/todosuper/todosuperclaro.jpeg",
+            "./img/portafolio/movil/todosuper/todosuper.jpeg"
+        ],
         badges: [],
         estado: null,
         placeholderClases: "proyecto-placeholder android-placeholder",
@@ -455,186 +283,3 @@ const proyectosData = {
         demo: "#"
     }
 };
-
-// ============================================
-// GENERACIÓN DINÁMICA DE CARDS
-// ============================================
-
-function generarCardHTML(key, proyecto) {
-    const isAndroid = proyecto.categoria === 'android';
-    const cardClass = isAndroid ? 'proyecto-card proyecto-card-android' : 'proyecto-card';
-    const imgClases = ['proyecto-imagen'];
-    if (proyecto.placeholderClases) imgClases.push(proyecto.placeholderClases);
-
-    // Badges HTML
-    let badgesHTML = '';
-    if (proyecto.badges && proyecto.badges.length > 0) {
-        if (proyecto.badges.length === 1) {
-            const b = proyecto.badges[0];
-            badgesHTML = `<div class="proyecto-destacado ${b.clase}"><i class="${b.icono}"></i> ${b.texto}</div>`;
-        } else {
-            badgesHTML = '<div class="proyecto-badges">' +
-                proyecto.badges.map(b => `<div class="proyecto-destacado ${b.clase}"><i class="${b.icono}"></i> ${b.texto}</div>`).join('') +
-                '</div>';
-        }
-    }
-
-    // Estado HTML
-    let estadoHTML = '';
-    if (proyecto.estado) {
-        estadoHTML = `<div class="proyecto-estado ${proyecto.estado.clase}"><i class="${proyecto.estado.icono}"></i> ${proyecto.estado.texto}</div>`;
-    }
-
-    // Tech tags (max 4 on card)
-    const cardTechs = proyecto.tecnologias.slice(0, 4);
-    const techHTML = cardTechs.map(t => `<span class="tech-tag">${t}</span>`).join('');
-
-    return `
-    <article class="${cardClass}" data-proyecto="${key}">
-        <div class="${imgClases.join(' ')}">
-            <img src="${proyecto.imagen}" alt="${proyecto.nombre}" loading="lazy">
-            <div class="proyecto-overlay">
-                <button class="btn-ver-proyecto" onclick="abrirModal('${key}')">
-                    <i class="fa-solid fa-eye"></i> Ver Detalles
-                </button>
-            </div>
-            ${badgesHTML}
-            ${estadoHTML}
-        </div>
-        <div class="proyecto-info">
-            <h3>${proyecto.nombre}</h3>
-            <p>${proyecto.resumen}</p>
-            <div class="proyecto-tecnologias">${techHTML}</div>
-            <div class="proyecto-acciones">
-                <a href="${proyecto.github}" target="_blank" class="btn-proyecto">
-                    <i class="fa-brands fa-github"></i> GitHub
-                </a>
-                <button class="btn-proyecto btn-detalles" onclick="abrirModal('${key}')">
-                    Detalles <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-    </article>`;
-}
-
-function generarMasProyectosCard(tipo) {
-    const isAndroid = tipo === 'android';
-    return `
-    <article class="proyecto-card proyecto-mas${isAndroid ? ' proyecto-card-android' : ''}">
-        <div class="proyecto-imagen proyecto-github">
-            <div class="github-icon-big">
-                <i class="fa-brands fa-${isAndroid ? 'android' : 'github'}"></i>
-            </div>
-        </div>
-        <div class="proyecto-info">
-            <h3>${isAndroid ? 'Próximos Proyectos' : 'Más Proyectos'}</h3>
-            <p>${isAndroid ? 'Más aplicaciones Android nativas en desarrollo. Explora mi GitHub para ver avances.' : 'Explora más proyectos, contribuciones y código en mi perfil de GitHub.'}</p>
-            <div class="proyecto-acciones">
-                <a href="https://github.com/JosephAntonyDev" target="_blank" class="btn-proyecto btn-github-full">
-                    <i class="fa-brands fa-github"></i> Ver GitHub
-                </a>
-            </div>
-        </div>
-    </article>`;
-}
-
-function generarPortfolioCards() {
-    const webContainer = document.getElementById('portfolio-web');
-    const androidContainer = document.getElementById('portfolio-android');
-    if (!webContainer || !androidContainer) return;
-
-    let webHTML = '';
-    let androidHTML = '';
-
-    Object.entries(proyectosData).forEach(([key, proyecto]) => {
-        const cardHTML = generarCardHTML(key, proyecto);
-        if (proyecto.categoria === 'android') {
-            androidHTML += cardHTML;
-        } else {
-            webHTML += cardHTML;
-        }
-    });
-
-    webHTML += generarMasProyectosCard('web');
-    androidHTML += generarMasProyectosCard('android');
-
-    webContainer.innerHTML = webHTML;
-    androidContainer.innerHTML = androidHTML;
-}
-
-// Función para abrir el modal
-function abrirModal(proyectoId) {
-    const proyecto = proyectosData[proyectoId];
-    if (!proyecto) return;
-    
-    const modal = document.getElementById('modal-proyecto');
-    const modalContent = modal.querySelector('.modal-contenido');
-
-    // Add/remove android class for modal styling
-    if (proyecto.categoria === 'android') {
-        modalContent.classList.add('modal-android');
-    } else {
-        modalContent.classList.remove('modal-android');
-    }
-    
-    // Actualizar contenido del modal
-    document.getElementById('modal-proyecto-nombre').textContent = proyecto.nombre;
-    document.getElementById('modal-titulo').textContent = proyecto.titulo;
-    document.getElementById('modal-descripcion').textContent = proyecto.descripcion;
-    
-    const modalImg = document.getElementById('modal-imagen');
-    const modalImgContainer = document.querySelector('.modal-imagen-principal');
-    if (proyecto.imagen) {
-        modalImg.src = proyecto.imagen;
-        modalImg.alt = proyecto.nombre;
-        modalImgContainer.style.display = 'block';
-    } else {
-        modalImgContainer.style.display = 'none';
-    }
-    
-    // Stats
-    document.getElementById('modal-tech-count').textContent = proyecto.tecnologias.length;
-    document.getElementById('modal-features-count').textContent = proyecto.features.length;
-    
-    // Links
-    document.getElementById('modal-github-link').href = proyecto.github;
-    document.getElementById('modal-demo-link').href = proyecto.demo;
-    
-    // Tecnologías
-    const techList = document.getElementById('modal-tech-list');
-    techList.innerHTML = proyecto.tecnologias.map(tech => 
-        `<span class="tech-tag">${tech}</span>`
-    ).join('');
-    
-    // Features
-    const featuresList = document.getElementById('modal-features-list');
-    featuresList.innerHTML = proyecto.features.map(feature => 
-        `<li>${feature}</li>`
-    ).join('');
-    
-    // Mostrar modal
-    modal.classList.add('activo');
-    document.body.style.overflow = 'hidden';
-}
-
-// Función para cerrar el modal
-function cerrarModal() {
-    const modal = document.getElementById('modal-proyecto');
-    modal.classList.remove('activo');
-    document.body.style.overflow = '';
-}
-
-// Cerrar modal con tecla Escape
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        cerrarModal();
-    }
-});
-
-// Cerrar modal al hacer click fuera del contenido
-document.addEventListener('click', function(e) {
-    const modal = document.getElementById('modal-proyecto');
-    if (e.target === modal) {
-        cerrarModal();
-    }
-});

@@ -1,4 +1,7 @@
-/* Sección Skills - Tech Stack */
+/* ============================================
+   SECCIÓN SKILLS - TECH STACK (Category Boxes)
+   ============================================ */
+
 .skills {
   background: linear-gradient(135deg, #1a1d21 0%, #252a2e 50%, #1a1d21 100%);
   color: #fff;
@@ -21,7 +24,7 @@
 
 .skills .skills-descripcion {
   text-align: center;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 18px;
   margin-bottom: 50px;
   max-width: 600px;
@@ -29,93 +32,157 @@
   margin-right: auto;
 }
 
-/* Categorías */
-.skills-categorias {
-  margin-bottom: 50px;
+/* ============================================
+   GRID DE CATEGORÍAS - 3 columnas
+   ============================================ */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-.skills-categorias h3 {
-  font-size: 24px;
+/* ============================================
+   CAJA DE CATEGORÍA
+   ============================================ */
+
+.skill-category {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 28px 24px;
+  transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+  border-color: rgba(28, 182, 152, 0.2);
+  box-shadow: 0 8px 32px rgba(28, 182, 152, 0.06);
+}
+
+.skill-category h3 {
+  font-size: 17px;
   font-family: "Righteous";
-  margin-bottom: 25px;
   color: #fff;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.skill-category h3 i {
+  color: #1cb698;
+  font-size: 18px;
+}
+
+/* ============================================
+   GRID INTERNO: 2 columnas de skill items
+   ============================================ */
+
+.skill-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* ============================================
+   CADA SKILL ITEM (card compacta)
+   ============================================ */
+
+.skill-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 12px 14px;
   display: flex;
   align-items: center;
   gap: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
 }
 
-.skills-categorias h3 i {
-  color: #1cb698;
-  font-size: 22px;
+.skill-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(28, 182, 152, 0.3);
+  background: rgba(28, 182, 152, 0.06);
+  box-shadow: 0 8px 20px rgba(28, 182, 152, 0.1);
 }
 
-/* Grid de tecnologías */
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 20px;
+.skill-item img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
 }
 
-/* Cards de tecnología */
-.tech-card {
-  background: linear-gradient(145deg, #2d3238 0%, #1e2227 100%);
-  border-radius: 16px;
-  padding: 25px 15px;
+.skill-item:hover img {
+  transform: scale(1.15);
+}
+
+/* Íconos oscuros que necesitan inversión en fondo dark */
+.skill-item img.invert-dark {
+  filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   SKILL INFO (nombre + nivel)
+   ============================================ */
+
+.skill-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  cursor: default;
-  position: relative;
-  overflow: hidden;
+  gap: 4px;
+  min-width: 0;
 }
 
-.tech-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #1cb698, #4fd1c5);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.tech-card:hover::before {
-  transform: scaleX(1);
-}
-
-.tech-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(28, 182, 152, 0.15);
-  border-color: rgba(28, 182, 152, 0.3);
-  background: linear-gradient(145deg, #353b42 0%, #252a2e 100%);
-}
-
-.tech-card img {
-  width: 55px;
-  height: 55px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-  transition: transform 0.3s ease;
-}
-
-.tech-card:hover img {
-  transform: scale(1.1);
-}
-
-.tech-card span {
-  font-size: 14px;
+.skill-name {
+  font-size: 13px;
   font-weight: 600;
   color: #e2e8f0;
-  text-align: center;
-  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Animación de entrada */
+/* ============================================
+   BADGES DE NIVEL
+   ============================================ */
+
+.skill-level {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  width: fit-content;
+  letter-spacing: 0.3px;
+}
+
+.skill-level.avanzado {
+  background: rgba(28, 182, 152, 0.15);
+  color: #1cb698;
+  border: 1px solid rgba(28, 182, 152, 0.25);
+}
+
+.skill-level.intermedio {
+  background: rgba(232, 168, 56, 0.15);
+  color: #e8a838;
+  border: 1px solid rgba(232, 168, 56, 0.25);
+}
+
+.skill-level.basico {
+  background: rgba(129, 140, 248, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(129, 140, 248, 0.25);
+}
+
+/* ============================================
+   ANIMACIONES DE ENTRADA
+   ============================================ */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -127,32 +194,14 @@
   }
 }
 
-.tech-card {
+.skill-category {
   animation: fadeInUp 0.6s ease forwards;
   opacity: 0;
 }
 
-.tech-card:nth-child(1) { animation-delay: 0.1s; }
-.tech-card:nth-child(2) { animation-delay: 0.15s; }
-.tech-card:nth-child(3) { animation-delay: 0.2s; }
-.tech-card:nth-child(4) { animation-delay: 0.25s; }
-.tech-card:nth-child(5) { animation-delay: 0.3s; }
-.tech-card:nth-child(6) { animation-delay: 0.35s; }
-
-/* Efecto glow en hover */
-.tech-card::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(28, 182, 152, 0.1) 0%, transparent 70%);
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.4s ease;
-  pointer-events: none;
-}
-
-.tech-card:hover::after {
-  transform: translate(-50%, -50%) scale(1.5);
-}
+.skill-category:nth-child(1) { animation-delay: 0.1s; }
+.skill-category:nth-child(2) { animation-delay: 0.2s; }
+.skill-category:nth-child(3) { animation-delay: 0.3s; }
+.skill-category:nth-child(4) { animation-delay: 0.4s; }
+.skill-category:nth-child(5) { animation-delay: 0.5s; }
+.skill-category:nth-child(6) { animation-delay: 0.6s; }
