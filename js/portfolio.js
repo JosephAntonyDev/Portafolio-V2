@@ -226,29 +226,17 @@ function renderGaleria() {
         </button>
     </div>`;
 
-    // Thumbnails with +N overflow indicators
+    // Thumbnails wrapper (rendered by renderThumbs)
     let thumbsHTML = '';
     if (total > 1) {
-        const scrollable = total > 5 ? ' scrollable' : '';
-        thumbsHTML = `<div class="galeria-thumbs-wrapper">`;
-        thumbsHTML += `<div class="galeria-overflow-indicator left" id="galeria-overflow-left"></div>`;
-        thumbsHTML += `<div class="galeria-thumbs${scrollable}" id="galeria-thumbs-strip">`;
-        galeriaActual.forEach((img, i) => {
-            thumbsHTML += `
-            <div class="galeria-thumb${i === galeriaIndex ? ' active' : ''}" onclick="galeriaIrA(${i})">
-                <img src="${img}" alt="Thumb ${i + 1}" loading="lazy">
-            </div>`;
-        });
-        thumbsHTML += '</div>';
-        thumbsHTML += `<div class="galeria-overflow-indicator right" id="galeria-overflow-right"></div>`;
-        thumbsHTML += '</div>';
+        thumbsHTML = '<div class="galeria-thumbs-wrapper"></div>';
     }
 
     container.innerHTML = heroHTML + thumbsHTML;
 
-    // Setup overflow indicators for scrollable thumbs
-    if (total > 5) {
-        setupThumbsOverflow();
+    // Render limited thumbnails with +N indicators
+    if (total > 1) {
+        renderThumbs();
     }
 
     // Attach swipe to gallery hero
@@ -260,63 +248,61 @@ function renderGaleria() {
 }
 
 // ============================================
-// THUMBNAILS OVERFLOW INDICATORS (+N)
+// THUMBNAILS - Limited sliding window with +N
 // ============================================
 
-function setupThumbsOverflow() {
-    const strip = document.getElementById('galeria-thumbs-strip');
-    if (!strip) return;
-
-    // Debounced scroll handler
-    let scrollTimer;
-    strip.addEventListener('scroll', () => {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => updateOverflowIndicators(), 50);
-    }, { passive: true });
-
-    // Initial update after a tick for layout
-    setTimeout(() => updateOverflowIndicators(), 80);
+function getMaxVisibleThumbs() {
+    const w = window.innerWidth;
+    if (w <= 480) return 5;
+    if (w <= 768) return 6;
+    if (w <= 1024) return 8;
+    return Infinity;
 }
 
-function updateOverflowIndicators() {
-    const strip = document.getElementById('galeria-thumbs-strip');
-    const leftInd = document.getElementById('galeria-overflow-left');
-    const rightInd = document.getElementById('galeria-overflow-right');
-    if (!strip || !leftInd || !rightInd) return;
+function renderThumbs() {
+    const wrapper = document.querySelector('.galeria-thumbs-wrapper');
+    if (!wrapper || galeriaActual.length <= 1) return;
 
-    const thumbs = strip.querySelectorAll('.galeria-thumb');
-    if (thumbs.length === 0) return;
+    const total = galeriaActual.length;
+    const maxVis = getMaxVisibleThumbs();
 
-    const stripRect = strip.getBoundingClientRect();
-    const scrollLeft = strip.scrollLeft;
-    const scrollRight = strip.scrollWidth - strip.clientWidth - scrollLeft;
+    let html = '<div class="galeria-thumbs">';
 
-    // Count how many thumbs are hidden on each side
-    let hiddenLeft = 0;
-    let hiddenRight = 0;
-
-    thumbs.forEach(thumb => {
-        const thumbRect = thumb.getBoundingClientRect();
-        const thumbCenter = thumbRect.left + thumbRect.width / 2;
-        if (thumbCenter < stripRect.left) hiddenLeft++;
-        else if (thumbCenter > stripRect.right) hiddenRight++;
-    });
-
-    // Left indicator
-    if (hiddenLeft > 0) {
-        leftInd.textContent = `+${hiddenLeft}`;
-        leftInd.classList.add('visible');
+    if (total <= maxVis) {
+        // All thumbs fit — render all
+        galeriaActual.forEach((img, i) => {
+            html += `<div class="galeria-thumb${i === galeriaIndex ? ' active' : ''}" onclick="galeriaIrA(${i})">
+                <img src="${img}" alt="Thumb ${i + 1}" loading="lazy">
+            </div>`;
+        });
     } else {
-        leftInd.classList.remove('visible');
+        // Sliding window centered on active index
+        const half = Math.floor(maxVis / 2);
+        let start = galeriaIndex - half;
+        let end = start + maxVis;
+        if (start < 0) { start = 0; end = maxVis; }
+        if (end > total) { end = total; start = Math.max(0, end - maxVis); }
+
+        const hiddenLeft = start;
+        const hiddenRight = total - end;
+
+        if (hiddenLeft > 0) {
+            html += `<div class="galeria-thumb-more" onclick="galeriaIrA(${start - 1})">+${hiddenLeft}</div>`;
+        }
+
+        for (let i = start; i < end; i++) {
+            html += `<div class="galeria-thumb${i === galeriaIndex ? ' active' : ''}" onclick="galeriaIrA(${i})">
+                <img src="${galeriaActual[i]}" alt="Thumb ${i + 1}" loading="lazy">
+            </div>`;
+        }
+
+        if (hiddenRight > 0) {
+            html += `<div class="galeria-thumb-more" onclick="galeriaIrA(${end})">+${hiddenRight}</div>`;
+        }
     }
 
-    // Right indicator
-    if (hiddenRight > 0) {
-        rightInd.textContent = `+${hiddenRight}`;
-        rightInd.classList.add('visible');
-    } else {
-        rightInd.classList.remove('visible');
-    }
+    html += '</div>';
+    wrapper.innerHTML = html;
 }
 
 function galeriaNav(dir) {
@@ -334,7 +320,6 @@ function galeriaIrA(index) {
 function updateGaleriaHero() {
     const heroImg = document.querySelector('.galeria-hero-img');
     const counter = document.querySelector('.galeria-counter');
-    const thumbs = document.querySelectorAll('.galeria-thumb');
 
     if (heroImg) {
         heroImg.style.opacity = '0';
@@ -351,17 +336,8 @@ function updateGaleriaHero() {
         counter.textContent = `${galeriaIndex + 1} / ${galeriaActual.length}`;
     }
 
-    thumbs.forEach((thumb, i) => {
-        thumb.classList.toggle('active', i === galeriaIndex);
-    });
-
-    // Scroll active thumb into view
-    const activeThumb = document.querySelector('.galeria-thumb.active');
-    if (activeThumb) {
-        activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        // Update overflow indicators after scroll animation
-        setTimeout(() => updateOverflowIndicators(), 350);
-    }
+    // Re-render thumbnails with sliding window
+    renderThumbs();
 }
 
 // ============================================

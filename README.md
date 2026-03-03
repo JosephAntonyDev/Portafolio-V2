@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://josephantonydev.github.io/Portafolio-V2/">
+  <a href="https://josephantony.dev">
     <img src="https://img.shields.io/badge/🌐_Live_Demo-1cb698?style=for-the-badge" alt="Live Demo" />
   </a>
   <a href="https://github.com/JosephAntonyDev">
@@ -30,7 +30,7 @@ Diseño oscuro moderno con acentos en verde teal (`#1cb698`), animaciones fluida
 
 ---
 
-## 🖥️ Secciones
+## Secciones
 
 | Sección | Descripción |
 |---------|-------------|
@@ -43,7 +43,7 @@ Diseño oscuro moderno con acentos en verde teal (`#1cb698`), animaciones fluida
 
 ---
 
-## 🚀 Proyectos Destacados
+## Proyectos Destacados
 
 ### Apps Web
 | Proyecto | Descripción |
@@ -64,7 +64,7 @@ Diseño oscuro moderno con acentos en verde teal (`#1cb698`), animaciones fluida
 
 ---
 
-## 🛠️ Tech Stack (del sitio)
+## Tech Stack (del sitio)
 
 ```
 HTML5 · CSS3 · JavaScript (ES6+)
@@ -106,7 +106,7 @@ HTML5 · CSS3 · JavaScript (ES6+)
 
 ---
 
-## ⚡ Características Destacadas
+## Características Destacadas
 
 - 🎨 **Diseño Dark Premium** — Gradientes, glassmorphism, bordes sutiles
 - 📱 **100% Responsive** — Desktop, tablet y móvil con menú fullscreen
@@ -118,7 +118,7 @@ HTML5 · CSS3 · JavaScript (ES6+)
 
 ---
 
-## 🏃 Ejecución Local
+## Ejecución Local
 
 ```bash
 # Clonar el repositorio
