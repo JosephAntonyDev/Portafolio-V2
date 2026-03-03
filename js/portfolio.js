@@ -226,11 +226,13 @@ function renderGaleria() {
         </button>
     </div>`;
 
-    // Thumbnails
+    // Thumbnails with +N overflow indicators
     let thumbsHTML = '';
     if (total > 1) {
         const scrollable = total > 5 ? ' scrollable' : '';
-        thumbsHTML = `<div class="galeria-thumbs${scrollable}">`;
+        thumbsHTML = `<div class="galeria-thumbs-wrapper">`;
+        thumbsHTML += `<div class="galeria-overflow-indicator left" id="galeria-overflow-left"></div>`;
+        thumbsHTML += `<div class="galeria-thumbs${scrollable}" id="galeria-thumbs-strip">`;
         galeriaActual.forEach((img, i) => {
             thumbsHTML += `
             <div class="galeria-thumb${i === galeriaIndex ? ' active' : ''}" onclick="galeriaIrA(${i})">
@@ -238,15 +240,82 @@ function renderGaleria() {
             </div>`;
         });
         thumbsHTML += '</div>';
+        thumbsHTML += `<div class="galeria-overflow-indicator right" id="galeria-overflow-right"></div>`;
+        thumbsHTML += '</div>';
     }
 
     container.innerHTML = heroHTML + thumbsHTML;
+
+    // Setup overflow indicators for scrollable thumbs
+    if (total > 5) {
+        setupThumbsOverflow();
+    }
 
     // Attach swipe to gallery hero
     const heroEl = container.querySelector('.galeria-hero');
     if (heroEl) {
         heroEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
         heroEl.addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe('galeria'); }, { passive: true });
+    }
+}
+
+// ============================================
+// THUMBNAILS OVERFLOW INDICATORS (+N)
+// ============================================
+
+function setupThumbsOverflow() {
+    const strip = document.getElementById('galeria-thumbs-strip');
+    if (!strip) return;
+
+    // Debounced scroll handler
+    let scrollTimer;
+    strip.addEventListener('scroll', () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => updateOverflowIndicators(), 50);
+    }, { passive: true });
+
+    // Initial update after a tick for layout
+    setTimeout(() => updateOverflowIndicators(), 80);
+}
+
+function updateOverflowIndicators() {
+    const strip = document.getElementById('galeria-thumbs-strip');
+    const leftInd = document.getElementById('galeria-overflow-left');
+    const rightInd = document.getElementById('galeria-overflow-right');
+    if (!strip || !leftInd || !rightInd) return;
+
+    const thumbs = strip.querySelectorAll('.galeria-thumb');
+    if (thumbs.length === 0) return;
+
+    const stripRect = strip.getBoundingClientRect();
+    const scrollLeft = strip.scrollLeft;
+    const scrollRight = strip.scrollWidth - strip.clientWidth - scrollLeft;
+
+    // Count how many thumbs are hidden on each side
+    let hiddenLeft = 0;
+    let hiddenRight = 0;
+
+    thumbs.forEach(thumb => {
+        const thumbRect = thumb.getBoundingClientRect();
+        const thumbCenter = thumbRect.left + thumbRect.width / 2;
+        if (thumbCenter < stripRect.left) hiddenLeft++;
+        else if (thumbCenter > stripRect.right) hiddenRight++;
+    });
+
+    // Left indicator
+    if (hiddenLeft > 0) {
+        leftInd.textContent = `+${hiddenLeft}`;
+        leftInd.classList.add('visible');
+    } else {
+        leftInd.classList.remove('visible');
+    }
+
+    // Right indicator
+    if (hiddenRight > 0) {
+        rightInd.textContent = `+${hiddenRight}`;
+        rightInd.classList.add('visible');
+    } else {
+        rightInd.classList.remove('visible');
     }
 }
 
@@ -290,6 +359,8 @@ function updateGaleriaHero() {
     const activeThumb = document.querySelector('.galeria-thumb.active');
     if (activeThumb) {
         activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        // Update overflow indicators after scroll animation
+        setTimeout(() => updateOverflowIndicators(), 350);
     }
 }
 

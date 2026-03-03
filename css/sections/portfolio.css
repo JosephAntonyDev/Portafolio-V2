@@ -875,7 +875,7 @@
   background: linear-gradient(145deg, #1a1d21 0%, #0f1113 100%);
   border-radius: 24px;
   padding: 32px 50px;
-  min-height: 420px;
+  min-height: 380px;
   overflow: hidden;
   cursor: pointer;
   user-select: none;
@@ -896,7 +896,7 @@
 }
 
 .galeria-hero-img {
-  max-height: 480px;
+  max-height: 440px;
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -995,30 +995,70 @@
 }
 
 /* --- Thumbnails Strip --- */
+.galeria-thumbs-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 14px;
+}
+
 .galeria-thumbs {
   display: flex;
   gap: 10px;
-  padding: 16px 4px 4px;
+  padding: 0 4px;
   overflow-x: auto;
   justify-content: center;
   scrollbar-width: none;
   -ms-overflow-style: none;
   scroll-behavior: smooth;
   scroll-snap-type: x proximity;
-  position: relative;
 }
 
 .galeria-thumbs::-webkit-scrollbar {
   display: none;
 }
 
-/* Many thumbnails: left-align and scroll */
+/* When scrollable: left-align */
 .galeria-thumbs.scrollable {
   justify-content: flex-start;
   padding-left: 8px;
   padding-right: 8px;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 92%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 3%, black 92%, transparent 100%);
+}
+
+/* +N overflow indicators */
+.galeria-overflow-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 17px;
+  background: rgba(28, 182, 152, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(28, 182, 152, 0.35);
+  color: #1cb698;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  z-index: 6;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+}
+
+.galeria-overflow-indicator.visible {
+  opacity: 1;
+}
+
+.galeria-overflow-indicator.left {
+  left: 0;
+}
+
+.galeria-overflow-indicator.right {
+  right: 0;
 }
 
 .galeria-thumb {
@@ -1057,7 +1097,7 @@
 }
 
 /* Galería con 1 sola imagen: sin thumbs ni flechas */
-.galeria-movil.single .galeria-thumbs,
+.galeria-movil.single .galeria-thumbs-wrapper,
 .galeria-movil.single .galeria-nav,
 .galeria-movil.single .galeria-counter {
   display: none;
@@ -1234,11 +1274,11 @@
     gap: 20px;
   }
   
-  .modal-titulo-bloque { order: 1; grid-column: 1; }
-  .modal-media-bloque { order: 2; grid-column: 1; }
-  .modal-desc-bloque { order: 3; grid-column: 1; }
-  .modal-info-bloque { order: 4; grid-column: 1; }
-  .modal-features-bloque { order: 5; grid-column: 1; }
+  .modal-titulo-bloque { order: 1; grid-column: 1; grid-row: auto; }
+  .modal-media-bloque { order: 2; grid-column: 1; grid-row: auto; }
+  .modal-desc-bloque { order: 3; grid-column: 1; grid-row: auto; }
+  .modal-info-bloque { order: 4; grid-column: 1; grid-row: auto; }
+  .modal-features-bloque { order: 5; grid-column: 1; grid-row: auto; }
   
   .modal-stats {
     flex-wrap: wrap;
@@ -1300,13 +1340,13 @@
 
   /* Modal Android en móvil */
   .galeria-hero {
-    padding: 24px 40px;
-    min-height: 340px;
+    padding: 16px 36px;
+    min-height: 260px;
     border-radius: 18px;
   }
 
   .galeria-hero-img {
-    max-height: 380px;
+    max-height: 280px;
     border-radius: 16px;
   }
 
@@ -1328,19 +1368,23 @@
   }
 
   .galeria-thumb {
-    width: 42px;
-    height: 63px;
+    width: 38px;
+    height: 57px;
     border-radius: 10px;
   }
 
   .galeria-thumbs {
     gap: 6px;
-    padding: 12px 4px 4px;
   }
 
-  .galeria-thumbs.scrollable {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 90%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 2%, black 90%, transparent 100%);
+  .galeria-thumbs-wrapper {
+    padding-top: 10px;
+  }
+
+  .galeria-overflow-indicator {
+    min-width: 32px;
+    height: 28px;
+    font-size: 0.65rem;
   }
 
   /* Lightbox móvil */
@@ -1451,13 +1495,13 @@
   }
 
   .galeria-hero {
-    padding: 18px 32px;
-    min-height: 280px;
+    padding: 12px 28px;
+    min-height: 220px;
     border-radius: 14px;
   }
 
   .galeria-hero-img {
-    max-height: 300px;
+    max-height: 230px;
     border-radius: 14px;
   }
 
@@ -1468,14 +1512,21 @@
   }
 
   .galeria-thumb {
-    width: 34px;
-    height: 51px;
+    width: 30px;
+    height: 45px;
     border-radius: 8px;
     border-width: 1.5px;
   }
 
   .galeria-thumbs {
-    gap: 5px;
+    gap: 4px;
+  }
+
+  .galeria-overflow-indicator {
+    min-width: 28px;
+    height: 24px;
+    font-size: 0.6rem;
+    padding: 0 5px;
   }
 
   .lightbox-nav {
