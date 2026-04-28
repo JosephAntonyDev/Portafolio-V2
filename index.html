@@ -1,7 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
+    <!-- Meta tags basicos -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- SEO Meta tags -->
+    <title>Jose Antonio | Desarrollador Full Stack & Backend - Portafolio</title>
+    <meta name="description" content="Portafolio de Jose Antonio, Ingeniero en Software especializado en desarrollo Back-End, DevOps, Blockchain y Cloud. Ganador de Hackathons nacionales e internacionales. AWS Certified." />
+    <meta name="keywords" content="desarrollador, full stack, backend, devops, blockchain, aws, cloud, react, node, python, go, jose antonio, chiapas, mexico, portafolio, software engineer" />
+    <meta name="author" content="Jose Antonio" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Spanish" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://josepantony.dev/" />
+    <meta property="og:title" content="Jose Antonio | Desarrollador Full Stack & Backend" />
+    <meta property="og:description" content="Ingeniero en Software especializado en Back-End, DevOps, Blockchain y Cloud. Ganador de Hackathons. AWS Certified." />
+    <meta property="og:image" content="./img/og-image.png" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="Jose Antonio - Portafolio" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://josepantony.dev/" />
+    <meta name="twitter:title" content="Jose Antonio | Desarrollador Full Stack & Backend" />
+    <meta name="twitter:description" content="Ingeniero en Software especializado en Back-End, DevOps, Blockchain y Cloud. Ganador de Hackathons. AWS Certified." />
+    <meta name="twitter:image" content="./img/og-image.png" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#1cb698" />
+    <meta name="msapplication-TileColor" content="#1cb698" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://josepantony.dev/" />
+    
+    <!-- Favicon -->
     <link rel="shortcut icon" id="icon" href="./img/inicio/circulo.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/inicio/circulo.ico" />
+    
+    <!-- Preconnect para mejorar rendimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    
     <!-- CSS Base -->
     <link rel="stylesheet" href="./css/base/reset.css" />
     <!-- CSS Componentes -->
@@ -12,13 +57,15 @@
     <link rel="stylesheet" href="./css/sections/sobremi.css" />
     <link rel="stylesheet" href="./css/sections/skills.css" />
     <link rel="stylesheet" href="./css/sections/curriculum.css" />
+    <link rel="stylesheet" href="./css/sections/certificados.css" />
+    <link rel="stylesheet" href="./css/sections/logros.css" />
     <link rel="stylesheet" href="./css/sections/portfolio.css" />
     <link rel="stylesheet" href="./css/sections/contacto.css" />
     <link rel="stylesheet" href="./css/sections/footer.css" />
     <!-- CSS Responsive -->
     <link rel="stylesheet" href="./css/responsive.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -26,7 +73,31 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>José Antonio - Portafolio</title>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jose Antonio",
+      "url": "https://josepantony.dev/",
+      "image": "./img/sobremi/foto.png",
+      "jobTitle": "Software Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Notaria 178"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Universidad Politecnica de Chiapas"
+      },
+      "knowsAbout": ["Backend Development", "DevOps", "Blockchain", "AWS", "Cloud Architecture", "React", "Node.js", "Python", "Go"],
+      "sameAs": [
+        "https://github.com/JosephAntonyDev",
+        "https://linkedin.com/in/jose-antonio"
+      ]
+    }
+    </script>
   </head>
   <body>
     <!-- JS: Menú (carga antes del DOM para onclick handlers) -->
@@ -44,6 +115,7 @@
             <li><a href="#sobremi" onclick="seleccionar()">QUIEN SOY</a></li>
             <li><a href="#skills" onclick="seleccionar()">SKILLS</a></li>
             <li><a href="#curriculum" onclick="seleccionar()">CURRICULUM</a></li>
+            <li><a href="#certificados" onclick="seleccionar()">CERTIFICADOS</a></li>
             <li><a href="#portfolio" onclick="seleccionar()">PORTAFOLIO</a></li>
             <li><a href="#contacto" onclick="seleccionar()">CONTACTO</a></li>
           </ul>
@@ -58,6 +130,8 @@
     <div id="section-sobremi"></div>
     <div id="section-skills"></div>
     <div id="section-curriculum"></div>
+    <div id="section-logros"></div>
+    <div id="section-certificados"></div>
     <div id="section-portfolio"></div>
 
     <!-- Modal de Proyecto (global, usado por js/portfolio.js) -->
@@ -177,6 +251,7 @@
     <script src="./js/contacto.js"></script>
     <script src="./js/portfolio-data.js"></script>
     <script src="./js/portfolio.js"></script>
+    <script src="./js/certificados.js"></script>
     <script src="./js/app.js"></script>
   </body>
 </html>

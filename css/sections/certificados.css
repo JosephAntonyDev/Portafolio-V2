@@ -1,0 +1,419 @@
+/* Seccion Certificados y Constancias */
+.certificados {
+  background-color: #0d1117;
+  color: #fff;
+  padding: 80px 20px;
+}
+
+.certificados .contenido-seccion {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.certificados h2 {
+  font-size: 48px;
+  font-family: "Righteous";
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.certificados-subtitulo {
+  text-align: center;
+  color: #8b949e;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+/* Filtros */
+.certificados-filtros {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.filtro-btn {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  color: #8b949e;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.filtro-btn:hover {
+  border-color: #1cb698;
+  color: #fff;
+}
+
+.filtro-btn.active {
+  background-color: #1cb698;
+  border-color: #1cb698;
+  color: #0d1117;
+}
+
+/* Grid de certificados */
+.certificados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* Card de certificado */
+.certificado-card {
+  background: linear-gradient(145deg, #161b22 0%, #0d1117 100%);
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.certificado-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1cb698, #17a589);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.certificado-card:hover {
+  border-color: #1cb698;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(28, 182, 152, 0.15);
+}
+
+.certificado-card:hover::before {
+  opacity: 1;
+}
+
+/* Logo del certificado */
+.certificado-logo {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.certificado-logo i {
+  font-size: 28px;
+  color: #fff;
+}
+
+.certificado-logo.cisco {
+  background: linear-gradient(135deg, #049fd9 0%, #0277a6 100%);
+}
+
+/* Contenido del certificado */
+.certificado-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.certificado-institucion {
+  color: #1cb698;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.certificado-titulo {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.certificado-descripcion {
+  color: #8b949e;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.certificado-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #21262d;
+}
+
+.certificado-fecha {
+  color: #8b949e;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.certificado-ver {
+  color: #1cb698;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.certificado-ver:hover {
+  color: #2ee5bb;
+}
+
+/* Card de agregar certificado */
+.certificado-add {
+  border: 2px dashed #30363d;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+}
+
+.certificado-add:hover {
+  border-color: #1cb698;
+  transform: none;
+  box-shadow: none;
+}
+
+.certificado-add-content {
+  text-align: center;
+  color: #8b949e;
+}
+
+.certificado-add-content i {
+  font-size: 40px;
+  margin-bottom: 16px;
+  color: #30363d;
+}
+
+.certificado-add-content span {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.certificado-add-content p {
+  font-size: 13px;
+}
+
+/* Modal de certificado */
+.modal-certificado {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-certificado.active {
+  display: flex;
+}
+
+.modal-certificado-contenido {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 20px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-certificado-cerrar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #21262d;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.modal-certificado-cerrar:hover {
+  background: #30363d;
+}
+
+.modal-certificado-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 30px;
+  border-bottom: 1px solid #21262d;
+}
+
+.modal-certificado-logo {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-certificado-logo i {
+  font-size: 32px;
+  color: #fff;
+}
+
+.modal-certificado-info span {
+  color: #1cb698;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-certificado-info h3 {
+  font-size: 22px;
+  color: #fff;
+  margin-top: 6px;
+}
+
+.modal-certificado-body {
+  padding: 30px;
+}
+
+.modal-certificado-imagen {
+  background: #0d1117;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.modal-certificado-imagen img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.modal-certificado-acciones {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-certificado-descargar,
+.btn-certificado-verificar {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-certificado-descargar {
+  background: #1cb698;
+  color: #0d1117;
+}
+
+.btn-certificado-descargar:hover {
+  background: #2ee5bb;
+}
+
+.btn-certificado-verificar {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: #fff;
+}
+
+.btn-certificado-verificar:hover {
+  border-color: #1cb698;
+  color: #1cb698;
+}
+
+/* Animacion de entrada para cards */
+.certificado-card {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.certificado-card:nth-child(1) { animation-delay: 0.1s; }
+.certificado-card:nth-child(2) { animation-delay: 0.15s; }
+.certificado-card:nth-child(3) { animation-delay: 0.2s; }
+.certificado-card:nth-child(4) { animation-delay: 0.25s; }
+.certificado-card:nth-child(5) { animation-delay: 0.3s; }
+.certificado-card:nth-child(6) { animation-delay: 0.35s; }
+.certificado-card:nth-child(7) { animation-delay: 0.4s; }
+.certificado-card:nth-child(8) { animation-delay: 0.45s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .certificados h2 {
+    font-size: 36px;
+  }
+
+  .certificados-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificado-card {
+    padding: 24px;
+  }
+
+  .modal-certificado-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .modal-certificado-acciones {
+    flex-direction: column;
+  }
+
+  .btn-certificado-descargar,
+  .btn-certificado-verificar {
+    min-width: 100%;
+  }
+}
