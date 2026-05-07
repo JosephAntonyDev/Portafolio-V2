@@ -606,6 +606,7 @@
   grid-column: 2;
   grid-row: 1 / 4;
   align-self: start;
+  min-width: 0; /* impide que el contenido de thumbs expanda el track 1fr */
 }
 
 .modal-info-bloque {
@@ -832,27 +833,26 @@
 }
 
 /* ============================================
-   MODAL ANDROID - LAYOUT + GALERÍA MÓVIL
+   MODAL ANDROID - Layout 2 columnas unificado
    ============================================ */
 
+/* Android usa el mismo grid de 2 columnas que los proyectos web */
 .modal-android .modal-body {
-  grid-template-columns: 1fr;
-  max-width: 900px;
-  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
 }
 
-.modal-android .modal-titulo-bloque { order: 1; grid-column: 1; grid-row: auto; }
-.modal-android .modal-desc-bloque { order: 3; grid-column: 1; grid-row: auto; }
-.modal-android .modal-media-bloque {
-  order: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  grid-column: 1;
-  grid-row: auto;
+/* Resetear al layout de 2 columnas estándar */
+.modal-android .modal-titulo-bloque   { order: 0; grid-column: 1; grid-row: 1; }
+.modal-android .modal-desc-bloque     { order: 0; grid-column: 1; grid-row: 2; }
+.modal-android .modal-media-bloque    {
+  order: 0;
+  display: block;
+  grid-column: 2;
+  grid-row: 1 / 4;
+  align-self: start;
 }
-.modal-android .modal-info-bloque { order: 4; grid-column: 1; grid-row: auto; }
-.modal-android .modal-features-bloque { order: 5; grid-column: 1; grid-row: auto; }
+.modal-android .modal-info-bloque     { order: 0; grid-column: 1; grid-row: 3; }
+.modal-android .modal-features-bloque { order: 0; grid-column: 1 / -1; grid-row: 4; }
 
 .modal-android .modal-features {
   width: 100%;
@@ -999,7 +999,7 @@
   position: relative;
   width: 100%;
   padding-top: 14px;
-  overflow: visible;
+  overflow: hidden; /* clip horizontal para no afectar dimensiones del grid */
 }
 
 .galeria-thumbs {
@@ -1082,6 +1082,95 @@
 .galeria-movil.single .galeria-nav,
 .galeria-movil.single .galeria-counter {
   display: none;
+}
+
+/* ============================================
+   GALERÍA WEB - Screenshots landscape (reutilizable)
+   ============================================ */
+
+.galeria-web {
+  width: 100%;
+}
+
+/* Hero landscape: aspect-ratio 16/9 previene CLS, sin padding (flechas son absolutas) */
+.galeria-web .galeria-hero {
+  aspect-ratio: 16 / 9;
+  min-height: unset;
+  padding: 0;
+  border-radius: 20px;
+}
+
+/* Screenshot ocupa todo el hero, el border-radius del contenedor lo recorta */
+.galeria-web .galeria-hero-img {
+  width: 100%;
+  height: 100%;
+  max-height: unset;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+/* Thumbnails landscape para screenshots de escritorio */
+.galeria-web .galeria-thumb {
+  width: 90px;
+  height: 56px;
+  border-radius: 8px;
+}
+
+.galeria-web .galeria-thumb-more {
+  width: 46px;
+  height: 56px;
+  border-radius: 8px;
+}
+
+.galeria-web.single .galeria-thumbs-wrapper,
+.galeria-web.single .galeria-nav,
+.galeria-web.single .galeria-counter {
+  display: none;
+}
+
+/* Skeleton shimmer mientras carga la imagen principal */
+@keyframes galeria-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.galeria-hero.img-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: galeria-shimmer 1.4s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Responsive: galería web en móvil */
+@media screen and (max-width: 768px) {
+  .galeria-web .galeria-hero {
+    padding: 8px 40px;
+    border-radius: 14px;
+  }
+
+  .galeria-web .galeria-thumb {
+    width: 72px;
+    height: 45px;
+    border-radius: 6px;
+  }
+
+  .galeria-web .galeria-thumb-more {
+    width: 38px;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 0.62rem;
+  }
 }
 
 /* ============================================
@@ -1254,17 +1343,25 @@
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .modal-titulo-bloque { order: 1; grid-column: 1; grid-row: auto; }
   .modal-media-bloque { order: 2; grid-column: 1; grid-row: auto; }
   .modal-desc-bloque { order: 3; grid-column: 1; grid-row: auto; }
   .modal-info-bloque { order: 4; grid-column: 1; grid-row: auto; }
   .modal-features-bloque { order: 5; grid-column: 1; grid-row: auto; }
-  
+
+  /* Android: forzar col única en tablet (mayor especificidad que los bloques estáticos) */
+  .modal-android .modal-body               { grid-template-columns: 1fr; }
+  .modal-android .modal-titulo-bloque      { order: 1; grid-column: 1; grid-row: auto; }
+  .modal-android .modal-media-bloque       { order: 2; grid-column: 1; grid-row: auto; display: block; }
+  .modal-android .modal-desc-bloque        { order: 3; grid-column: 1; grid-row: auto; }
+  .modal-android .modal-info-bloque        { order: 4; grid-column: 1; grid-row: auto; }
+  .modal-android .modal-features-bloque    { order: 5; grid-column: 1; grid-row: auto; }
+
   .modal-stats {
     flex-wrap: wrap;
   }
-  
+
   .stat {
     flex: 1;
     min-width: 140px;

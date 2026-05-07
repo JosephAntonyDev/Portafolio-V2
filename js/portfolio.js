@@ -120,11 +120,16 @@ function initPortfolioTabs() {
 }
 
 // ============================================
-// GALERÍA MÓVIL - Estado global
+// GALERÍA - Estado global
 // ============================================
 let galeriaActual = [];
 let galeriaIndex = 0;
 let lightboxAbierto = false;
+let galeriaEsWeb = false;
+
+function optimizeCloudinaryUrl(url) {
+    return url.replace('/image/upload/', '/image/upload/f_auto,q_auto/');
+}
 
 // Función para abrir el modal
 function abrirModal(proyectoId) {
@@ -156,7 +161,10 @@ function abrirModal(proyectoId) {
         // Ocultar imagen simple, mostrar galería
         modalImgContainer.style.display = 'none';
         galeriaContainer.style.display = '';
-        galeriaActual = proyecto.galeria;
+        galeriaEsWeb = proyecto.categoria === 'web';
+        galeriaActual = proyecto.galeria.map(url =>
+            url.startsWith('https://res.cloudinary.com') ? optimizeCloudinaryUrl(url) : url
+        );
         galeriaIndex = 0;
         renderGaleria();
     } else if (proyecto.imagen) {
@@ -166,10 +174,12 @@ function abrirModal(proyectoId) {
         modalImg.src = proyecto.imagen;
         modalImg.alt = proyecto.nombre;
         galeriaActual = [];
+        galeriaEsWeb = false;
     } else {
         modalImgContainer.style.display = 'none';
         galeriaContainer.style.display = 'none';
         galeriaActual = [];
+        galeriaEsWeb = false;
     }
     
     // Stats
@@ -207,13 +217,17 @@ function renderGaleria() {
 
     const total = galeriaActual.length;
     const isSingle = total === 1;
+    const baseClass = galeriaEsWeb ? 'galeria-web' : 'galeria-movil';
 
-    container.className = 'galeria-movil' + (isSingle ? ' single' : '');
+    container.className = baseClass + (isSingle ? ' single' : '');
 
-    // Hero
+    // Hero — primera imagen siempre con fetchpriority high (carga crítica)
     let heroHTML = `
     <div class="galeria-hero" onclick="abrirLightbox()">
-        <img class="galeria-hero-img" src="${galeriaActual[galeriaIndex]}" alt="Screenshot ${galeriaIndex + 1}">
+        <img class="galeria-hero-img"
+            src="${galeriaActual[0]}"
+            alt="Screenshot 1"
+            fetchpriority="high">
         <button class="galeria-nav prev" onclick="event.stopPropagation(); galeriaNav(-1)">
             <i class="fa-solid fa-chevron-left"></i>
         </button>
@@ -234,13 +248,30 @@ function renderGaleria() {
 
     container.innerHTML = heroHTML + thumbsHTML;
 
+    // Skeleton blur-up: fade imagen al cargar
+    const heroEl = container.querySelector('.galeria-hero');
+    const heroImg = container.querySelector('.galeria-hero-img');
+    if (heroEl && heroImg) {
+        heroEl.classList.add('img-loading');
+        heroImg.style.opacity = '0';
+        const onLoaded = () => {
+            heroImg.style.opacity = '1';
+            heroEl.classList.remove('img-loading');
+        };
+        if (heroImg.complete && heroImg.naturalHeight > 0) {
+            onLoaded();
+        } else {
+            heroImg.onload = onLoaded;
+            heroImg.onerror = onLoaded;
+        }
+    }
+
     // Render limited thumbnails with +N indicators
     if (total > 1) {
         renderThumbs();
     }
 
     // Attach swipe to gallery hero
-    const heroEl = container.querySelector('.galeria-hero');
     if (heroEl) {
         heroEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
         heroEl.addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe('galeria'); }, { passive: true });
@@ -253,10 +284,20 @@ function renderGaleria() {
 
 function getMaxVisibleThumbs() {
     const w = window.innerWidth;
+    if (galeriaEsWeb) {
+        // Thumbs 90px. Col derecha 2-col ~542px útil.
+        // 4 thumbs + 2 botones +N = 4×90+3×10+2×(46+10) = 502px < 542px ✓
+        if (w <= 480) return 3;
+        if (w <= 768) return 4;
+        if (w <= 1024) return 6;  // col única en tablet, ancho completo
+        return 4;                  // 2-col desktop, panel derecho ~542px
+    }
+    // Android: thumbs 52px. Col derecha ~542px.
+    // 7 thumbs + 2 botones +N = 7×52+6×10+2×(48+10) = 540px < 542px ✓
     if (w <= 480) return 5;
     if (w <= 768) return 6;
     if (w <= 1024) return 8;
-    return Infinity;
+    return 7;  // 2-col desktop, limitar para no desbordar la col derecha
 }
 
 function renderThumbs() {
@@ -320,15 +361,26 @@ function galeriaIrA(index) {
 function updateGaleriaHero() {
     const heroImg = document.querySelector('.galeria-hero-img');
     const counter = document.querySelector('.galeria-counter');
+    const heroEl = document.querySelector('.galeria-hero');
 
     if (heroImg) {
         heroImg.style.opacity = '0';
         heroImg.style.transform = 'scale(0.96)';
+        if (heroEl) heroEl.classList.add('img-loading');
         setTimeout(() => {
             heroImg.src = galeriaActual[galeriaIndex];
             heroImg.alt = `Screenshot ${galeriaIndex + 1}`;
-            heroImg.style.opacity = '1';
-            heroImg.style.transform = 'scale(1)';
+            const onLoaded = () => {
+                heroImg.style.opacity = '1';
+                heroImg.style.transform = 'scale(1)';
+                if (heroEl) heroEl.classList.remove('img-loading');
+            };
+            if (heroImg.complete && heroImg.naturalHeight > 0) {
+                onLoaded();
+            } else {
+                heroImg.onload = onLoaded;
+                heroImg.onerror = onLoaded;
+            }
         }, 180);
     }
 
@@ -402,6 +454,7 @@ function cerrarModal() {
     cerrarLightbox();
     galeriaActual = [];
     galeriaIndex = 0;
+    galeriaEsWeb = false;
 }
 
 // Keyboard navigation
