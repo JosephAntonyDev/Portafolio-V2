@@ -1,0 +1,71 @@
+<!-- Sección Certificaciones -->
+<section id="certificados" class="certificados">
+  <div class="cert-contenido">
+
+    <!-- Encabezado -->
+    <div class="cert-header">
+      <h2>Certificaciones</h2>
+      <p class="cert-descripcion">
+        Formación continua en tecnologías cloud, redes y desarrollo de software,
+        avalada por plataformas líderes a nivel global.
+      </p>
+    </div>
+
+    <!-- Stats -->
+    <div class="cert-stats">
+      <div class="cert-stat">
+        <span class="cert-stat-num" data-target="28">0</span>
+        <span class="cert-stat-label">Certificados</span>
+      </div>
+      <div class="cert-stat">
+        <span class="cert-stat-num" data-target="3">0</span>
+        <span class="cert-stat-label">Plataformas</span>
+      </div>
+      <div class="cert-stat">
+        <span class="cert-stat-text">2023 – 2026</span>
+        <span class="cert-stat-label">Período</span>
+      </div>
+    </div>
+
+    <!-- Filter tabs — Desktop -->
+    <div class="cert-tabs" id="cert-tabs-desktop">
+      <button class="cert-tab active" data-tab="todos">
+        <i class="fa-solid fa-layer-group"></i> Todos <span class="cert-tab-count">28</span>
+      </button>
+      <button class="cert-tab" data-tab="cloud">
+        <i class="fa-solid fa-cloud"></i> Cloud <span class="cert-tab-count">4</span>
+      </button>
+      <button class="cert-tab" data-tab="redes">
+        <i class="fa-solid fa-network-wired"></i> Redes <span class="cert-tab-count">3</span>
+      </button>
+      <button class="cert-tab" data-tab="desarrollo">
+        <i class="fa-solid fa-code"></i> Desarrollo <span class="cert-tab-count">11</span>
+      </button>
+      <button class="cert-tab" data-tab="profesional">
+        <i class="fa-solid fa-briefcase"></i> Profesional <span class="cert-tab-count">10</span>
+      </button>
+    </div>
+
+    <!-- Filter tabs — Mobile (flechas) -->
+    <div class="cert-tabs-mobile" id="cert-tabs-mobile">
+      <button class="cert-tab-arrow-btn" id="cert-mobile-prev" onclick="certTabNav(-1)" disabled>
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="cert-mobile-tab-display" id="cert-mobile-tab-display">
+        <!-- Actualizado por JS -->
+      </div>
+      <button class="cert-tab-arrow-btn" id="cert-mobile-next" onclick="certTabNav(1)">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+    <!-- Indicador de puntos (móvil) -->
+    <div class="cert-tab-dots-row" id="cert-tab-dots-row"></div>
+
+    <!-- Grid de certificados (generado por js/certificados.js) -->
+    <div class="cert-grid" id="cert-grid"></div>
+
+    <!-- Paginación -->
+    <div class="cert-paginacion" id="cert-paginacion"></div>
+
+  </div>
+</section>

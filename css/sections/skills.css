@@ -22,6 +22,16 @@
   color: #fff;
 }
 
+.skills h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #1cb698, #14a085);
+  margin: 20px auto 0;
+  border-radius: 2px;
+}
+
 .skills .skills-descripcion {
   text-align: center;
   color: rgba(255, 255, 255, 0.7);

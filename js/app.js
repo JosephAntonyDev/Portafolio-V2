@@ -7,8 +7,9 @@ const secciones = [
     { id: 'section-inicio',      archivo: './html/sections/inicio.html' },
     { id: 'section-sobremi',     archivo: './html/sections/sobremi.html' },
     { id: 'section-skills',      archivo: './html/sections/skills.html' },
-    { id: 'section-curriculum',  archivo: './html/sections/curriculum.html' },
-    { id: 'section-portfolio',   archivo: './html/sections/portfolio.html' },
+    { id: 'section-curriculum',     archivo: './html/sections/curriculum.html' },
+    { id: 'section-certificados',   archivo: './html/sections/certificados.html' },
+    { id: 'section-portfolio',      archivo: './html/sections/portfolio.html' },
     { id: 'section-contacto',    archivo: './html/sections/contacto.html' },
     { id: 'section-footer',      archivo: './html/sections/footer.html' }
 ];
@@ -33,6 +34,9 @@ async function cargarSecciones() {
 
 // Inicializar todos los módulos después de que el HTML esté listo
 function inicializarApp() {
+    // Certificados: generar grid y tabs
+    initCertificados();
+
     // Portafolio: generar cards y tabs
     generarPortfolioCards();
     initPortfolioTabs();

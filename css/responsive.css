@@ -83,6 +83,7 @@
   nav.responsive ul li:nth-child(4) { animation-delay: 0.24s; }
   nav.responsive ul li:nth-child(5) { animation-delay: 0.30s; }
   nav.responsive ul li:nth-child(6) { animation-delay: 0.36s; }
+  nav.responsive ul li:nth-child(7) { animation-delay: 0.42s; }
 
   nav.responsive ul li a {
     display: block;

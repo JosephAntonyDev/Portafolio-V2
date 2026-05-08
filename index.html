@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/sections/sobremi.css" />
     <link rel="stylesheet" href="./css/sections/skills.css" />
     <link rel="stylesheet" href="./css/sections/curriculum.css" />
+    <link rel="stylesheet" href="./css/sections/certificados.css" />
     <link rel="stylesheet" href="./css/sections/portfolio.css" />
     <link rel="stylesheet" href="./css/sections/contacto.css" />
     <link rel="stylesheet" href="./css/sections/footer.css" />
@@ -44,6 +45,7 @@
             <li><a href="#sobremi" onclick="seleccionar()">QUIEN SOY</a></li>
             <li><a href="#skills" onclick="seleccionar()">SKILLS</a></li>
             <li><a href="#curriculum" onclick="seleccionar()">CURRICULUM</a></li>
+            <li><a href="#certificados" onclick="seleccionar()">CERTIFICADOS</a></li>
             <li><a href="#portfolio" onclick="seleccionar()">PORTAFOLIO</a></li>
             <li><a href="#contacto" onclick="seleccionar()">CONTACTO</a></li>
           </ul>
@@ -58,7 +60,80 @@
     <div id="section-sobremi"></div>
     <div id="section-skills"></div>
     <div id="section-curriculum"></div>
+    <div id="section-certificados"></div>
     <div id="section-portfolio"></div>
+
+    <!-- Modal de Certificado (global, usado por js/certificados.js) -->
+    <div id="modal-cert" class="modal-cert">
+      <div class="modal-cert-overlay" onclick="cerrarCertificado()"></div>
+      <div class="modal-cert-contenido">
+        <button class="modal-cert-cerrar" onclick="cerrarCertificado()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-cert-body">
+          <!-- Columna visual -->
+          <div class="modal-cert-visual-col">
+            <div class="modal-cert-visual">
+              <img id="modal-cert-img" src="" alt="Certificado" style="display:none">
+              <div id="modal-cert-badge" class="modal-cert-badge" style="display:none">
+                <div class="badge-content">
+                  <div class="badge-icon-wrap">
+                    <i id="modal-cert-badge-icon"></i>
+                  </div>
+                  <div class="badge-prov-name" id="modal-cert-badge-prov"></div>
+                  <div class="badge-divider"></div>
+                  <div class="badge-title-text" id="modal-cert-badge-titulo"></div>
+                  <div class="badge-fecha-text" id="modal-cert-badge-fecha"></div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-cert-actions">
+              <a id="modal-cert-verify" href="#" target="_blank" class="cert-action-btn cert-verify-btn">
+                <i class="fa-solid fa-shield-check"></i> Verificar Credencial
+              </a>
+              <button id="modal-cert-fullscreen-btn" class="cert-action-btn cert-fullscreen-btn" onclick="certFullscreen()" style="display:none">
+                <i class="fa-solid fa-expand"></i> Pantalla Completa
+              </button>
+            </div>
+          </div>
+          <!-- Columna info -->
+          <div class="modal-cert-info-col">
+            <div class="modal-cert-prov-header">
+              <div class="modal-cert-prov-badge" id="modal-cert-prov-badge">
+                <i id="modal-cert-prov-icon"></i>
+              </div>
+              <span id="modal-cert-prov-label"></span>
+            </div>
+            <div class="modal-cert-titulo-wrapper">
+              <h2 id="modal-cert-titulo"></h2>
+            </div>
+            <div class="modal-cert-details">
+              <div class="modal-cert-detail">
+                <i class="fa-solid fa-calendar-days"></i>
+                <div class="modal-cert-detail-text">
+                  <small>Fecha de expedición</small>
+                  <span id="modal-cert-fecha"></span>
+                </div>
+              </div>
+              <div class="modal-cert-detail">
+                <i class="fa-solid fa-tag"></i>
+                <div class="modal-cert-detail-text">
+                  <small>Categoría</small>
+                  <span id="modal-cert-cat"></span>
+                </div>
+              </div>
+              <div class="modal-cert-detail">
+                <i class="fa-solid fa-fingerprint"></i>
+                <div class="modal-cert-detail-text">
+                  <small>ID de Credencial</small>
+                  <span id="modal-cert-credid" class="cert-credid"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal de Proyecto (global, usado por js/portfolio.js) -->
     <div id="modal-proyecto" class="modal-proyecto">
@@ -176,6 +251,7 @@
     <script src="./js/toast.js"></script>
     <script src="./js/contacto.js"></script>
     <script src="./js/portfolio-data.js"></script>
+    <script src="./js/certificados.js"></script>
     <script src="./js/portfolio.js"></script>
     <script src="./js/app.js"></script>
   </body>
