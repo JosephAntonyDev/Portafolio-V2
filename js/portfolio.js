@@ -327,8 +327,11 @@ function renderThumbs() {
         const hiddenLeft = start;
         const hiddenRight = total - end;
 
+        // Always render both slots so row width is constant (no layout shift)
         if (hiddenLeft > 0) {
             html += `<div class="galeria-thumb-more" onclick="galeriaIrA(${start - 1})">+${hiddenLeft}</div>`;
+        } else {
+            html += `<div class="galeria-thumb-more" style="visibility:hidden;pointer-events:none"></div>`;
         }
 
         for (let i = start; i < end; i++) {
@@ -339,6 +342,8 @@ function renderThumbs() {
 
         if (hiddenRight > 0) {
             html += `<div class="galeria-thumb-more" onclick="galeriaIrA(${end})">+${hiddenRight}</div>`;
+        } else {
+            html += `<div class="galeria-thumb-more" style="visibility:hidden;pointer-events:none"></div>`;
         }
     }
 
