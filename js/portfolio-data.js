@@ -133,7 +133,7 @@ const proyectosData = {
         titulo: "GEOVA",
         resumen: "Sistema inteligente de medición y análisis para proyectos de ingeniería civil con IoT.",
         descripcion: "Sistema inteligente de medición y análisis para proyectos de ingeniería civil. Utiliza sensores IoT con Raspberry Pi y ESP32 para recopilar datos en tiempo real, procesarlos con Python y visualizarlos en dashboards interactivos.",
-        imagen: "./img/portafolio/web/geova/GEOVA.webp",
+        imagen: "https://res.cloudinary.com/dahkwcslh/image/upload/f_auto,q_auto,w_920/v1779014412/Geova_bmiwj1.jpg",
         categoria: "web",
         tecnologias: ["Go", "Python", "Raspberry Pi", "ESP32", "FastAPI", "PostgreSQL", "RabbitMQ", "Angular", "Docker", "WebSockets"],
         features: [
@@ -147,14 +147,14 @@ const proyectosData = {
         estado: null,
         placeholderClases: "",
         github: "https://github.com/AnabelenScript/Geova_Frontend",
-        demo: "#"
+        demo: "https://geova-frontend-tan.vercel.app/"
     },
     frimeet: {
         nombre: "Frimeet",
         titulo: "Frimeet",
         resumen: "Plataforma de recomendaciones con APIs REST y bases de datos relacionales y no relacionales.",
         descripcion: "Plataforma de recomendaciones inteligente que combina APIs REST robustas con bases de datos relacionales (PostgreSQL) y no relacionales (MongoDB). El sistema utiliza algoritmos de Machine Learning para personalizar las sugerencias.",
-        imagen: "./img/portafolio/web/frimeet/Frimeet.webp",
+        imagen: "https://res.cloudinary.com/dahkwcslh/image/upload/f_auto,q_auto,w_920/v1778984455/LandingPage_w5bh98.png",
         categoria: "web",
         tecnologias: ["Node.js", "MongoDB", "PostgreSQL", "Python", "Express", "Machine Learning", "React + vite"],
         features: [
@@ -168,7 +168,7 @@ const proyectosData = {
         estado: null,
         placeholderClases: "",
         github: "https://github.com/AlleksDev/Frimeet",
-        demo: "#"
+        demo: "https://frimeet.app/"
     },
     readingclub: {
         nombre: "Reading Club",
