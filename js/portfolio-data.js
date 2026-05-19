@@ -135,6 +135,21 @@ const proyectosData = {
         descripcion: "Sistema inteligente de medición y análisis para proyectos de ingeniería civil. Utiliza sensores IoT con Raspberry Pi y ESP32 para recopilar datos en tiempo real, procesarlos con Python y visualizarlos en dashboards interactivos.",
         imagen: "https://res.cloudinary.com/dahkwcslh/image/upload/f_auto,q_auto,w_920/v1779014412/Geova_bmiwj1.jpg",
         categoria: "web",
+        galeria: [
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779014412/Geova_bmiwj1.jpg",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215048/Geova_2_jhkyfw.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215048/Geova_3_tkcdfs.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215048/Geova_4_ridvjo.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215050/Geova_7_rj254d.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215050/Geova_8_p5y9ds.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215051/Geova_9_zx22zm.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215051/Geova_10_fpzjwv.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215053/Geova_11_jirmrw.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215053/Geova_12_xyxcqq.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215054/Geova_13_qmdo9q.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215049/Geova_5_djna1m.png",
+            "https://res.cloudinary.com/dahkwcslh/image/upload/v1779215049/Geova_6_n9v8si.png"
+        ],
         tecnologias: ["Go", "Python", "Raspberry Pi", "ESP32", "FastAPI", "PostgreSQL", "RabbitMQ", "Angular", "Docker", "WebSockets"],
         features: [
             "Monitoreo en tiempo real con IoT",
@@ -175,7 +190,7 @@ const proyectosData = {
         titulo: "Reading Club",
         resumen: "Plataforma de libros y clubs de lectura para comunidades de lectores.",
         descripcion: "Plataforma social para amantes de la lectura donde pueden crear y unirse a clubs de lectura, compartir reseñas, organizar sesiones de discusión y descubrir nuevos libros basados en sus intereses.",
-        imagen: "./img/portafolio/web/ReadingClub.webp",
+        imagen: "https://res.cloudinary.com/dahkwcslh/image/upload/f_auto,q_auto,w_920/v1779220006/Reading_z0igqu.png",
         categoria: "web",
         tecnologias: ["React", "Node.js", "MongoDB", "Socket.io", "Express", "JWT"],
         features: [
@@ -186,10 +201,10 @@ const proyectosData = {
             "Calendario de eventos de lectura"
         ],
         badges: [],
-        estado: { texto: "En desarrollo", icono: "fa-solid fa-code", clase: "" },
+        //estado: { texto: "En desarrollo", icono: "fa-solid fa-code", clase: "" },
         placeholderClases: "",
         github: "https://github.com/JosephAntonyDev/Reading-Club",
-        demo: "#"
+        demo: "https://reading-club-gold.vercel.app/"
     },
     animtop: {
         nombre: "AnimTop",
